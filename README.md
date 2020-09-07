@@ -36,7 +36,7 @@ The main components for each use case are as follows:
 
 ### Reporting
 
-- Dashboard for reporting on budget status
+- dashboard - for reporting on budget status
 
 ### Budget
 
@@ -48,7 +48,7 @@ The main components for each use case are as follows:
 
 - expense-details - Likely not needed
 - expense-add - Add new expense against the detailed budget, with name and amount
-- expense-edit - Chagne the name and abount, option to delete
+- expense-edit - Change the name and abount, option to delete
 
 Possible, expense options: Date of expense, Method of expense (Transfer, CC. Check)
 

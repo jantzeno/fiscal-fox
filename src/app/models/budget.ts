@@ -4,7 +4,7 @@ export class Budget {
   private id: number;
   name: string;
   amount: number;
-  expenses: Array<Expense>;
+  expenses: Map<number, Expense>;
 
   constructor(name: string, amount: number, id: number = 0) {
     this.name = name;

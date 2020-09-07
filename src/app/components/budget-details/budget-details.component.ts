@@ -3,11 +3,13 @@ import { Expense } from 'src/app/models/expense';
 
 @Component({
   selector: 'app-budget-details',
-  templateUrl: './budget-details.component.html',
   styleUrls: ['./budget-details.component.scss'],
+  template: `<div>
+    <p>{{ expense.name }} ... {{ expense.amount | currency }}</p>
+  </div>`,
 })
 export class BudgetDetailsComponent implements OnInit {
-  @Input() expenses: Array<Expense>;
+  @Input() expense: Expense;
 
   constructor() {}
 

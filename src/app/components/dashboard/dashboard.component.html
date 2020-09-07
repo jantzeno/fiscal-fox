@@ -7,14 +7,17 @@
   <!-- TODO: Route to  -->
   <div *ngFor="let budget of budgets">
     <h3>{{ budget.name }}</h3>
-    <div *ngIf="budget.expenses.length === 0">
+    <div *ngIf="budget.expenses.size === 0">
       <ul>
         <li>There are no expenses against this budget</li>
         <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li>
       </ul>
     </div>
-    <div *ngIf="budget.expenses.length > 0">
-      <app-budget-details [expenses]="budget.expenses"></app-budget-details>
+    <div *ngIf="budget.expenses.size > 0">
+      <app-budget-details
+        *ngFor="let expense of budget.expenses.values()"
+        [expense]="expense"
+      ></app-budget-details>
       <ul>
         <li>Total Expenses: {{ budget.calcExpenseTotal() | currency }}</li>
         <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li>
