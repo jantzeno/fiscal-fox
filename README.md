@@ -36,7 +36,7 @@ The main components for each use case are as follows:
 
 ### Reporting
 
-- Dashboard for reporting on budget status
+- dashboard - for reporting on budget status
 
 ### Budget
 
