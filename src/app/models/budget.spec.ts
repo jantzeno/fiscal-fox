@@ -19,17 +19,17 @@ describe('Budget', () => {
   ]);
 
   // Budget Test Data
-  let id = 1;
-  let name = 'IT Services';
-  let amount = compAmt + printAmt + softAmt;
+  let budId = 1;
+  let budName = 'IT Services';
+  const budRemain = 500;
+  let budAmount = budRemain + compAmt + printAmt + softAmt;
 
   it('should create an instance', () => {
-    expect(new Budget(name, amount, id)).toBeTruthy();
+    expect(new Budget(budName, budAmount, budId)).toBeTruthy();
   });
 
-  let budget = new Budget(name, amount, id);
-
   it('should take and return an map of expenses', () => {
+    let budget = new Budget(budName, budAmount, budId);
     budget.expenses = expenses;
     expect(budget.expenses.size).toBe(3);
     expect(budget.expenses.get(ex1Id)).toBe(ex1);
@@ -37,7 +37,20 @@ describe('Budget', () => {
     expect(budget.expenses.get(ex3Id)).toBe(ex3);
   });
 
-  it('should provide a getter for the id', () => {
-    expect(budget.getId()).toBe(id);
+  it('should provide a getter for the budId', () => {
+    let budget = new Budget(budName, budAmount, budId);
+    expect(budget.getId()).toBe(budId);
+  });
+
+  it('should calcExpenseTotal', () => {
+    let budget = new Budget(budName, budAmount, budId);
+    budget.expenses = expenses;
+    expect(budget.calcExpenseTotal()).toBe(compAmt + printAmt + softAmt);
+  });
+
+  it('should calcRemainingBudget', () => {
+    let budget = new Budget(budName, budAmount, budId);
+    budget.expenses = expenses;
+    expect(budget.calcRemainingBudget()).toBe(budRemain);
   });
 });
