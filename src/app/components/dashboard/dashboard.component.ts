@@ -1,6 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Budget } from 'src/app/models/budget';
 import { Expense } from 'src/app/models/expense';
+import { getBudgets, getExpenses } from 'src/app/store';
+import { AppState } from 'src/app/store/application-state.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,25 +13,13 @@ import { Expense } from 'src/app/models/expense';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  budgets: Array<Budget>;
+  budgets$: Observable<Map<number, Budget>>;
+  expenses$: Observable<Map<number, Expense>>;
 
-  constructor() {}
+  constructor(private store$: Store<AppState>) {}
 
   ngOnInit(): void {
-    //Mock Data
-    let itBudget = new Budget('IT Budget', 5000, 1);
-    let softExp = new Expense('Create Suite', 200, 1);
-    let compExp = new Expense('Computer Refresh', 2000, 2);
-    let copierExp = new Expense('Copier Lease', 500, 3);
-    itBudget.expenses = new Map([
-      [1, softExp],
-      [2, compExp],
-      [3, copierExp],
-    ]);
-
-    let partyBudget = new Budget('Christmas Party', 500, 2);
-    partyBudget.expenses = new Map();
-
-    this.budgets = [itBudget, partyBudget];
+    this.budgets$ = this.store$.pipe(select(getBudgets));
+    this.expenses$ = this.store$.pipe(select(getExpenses));
   }
 }

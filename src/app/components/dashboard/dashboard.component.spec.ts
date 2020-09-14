@@ -1,21 +1,34 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { MemoizedSelector } from '@ngrx/store';
+import { BudgetState } from 'src/app/store/application-state.model';
+import { getBudgets } from 'src/app/store';
+import { Budget } from 'src/app/models/budget';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let mockStore: MockStore;
+  let mockGetBudgetsSelector: MemoizedSelector<
+    BudgetState,
+    Map<number, Budget>
+  >;
 
-  // TODO: Move mock test data to here from .ts file after wired to backend
+  // TODO: Make this better after getting used to Ngrx
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [provideMockStore()],
       declarations: [DashboardComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
+    mockStore = TestBed.inject(MockStore);
+    mockGetBudgetsSelector = mockStore.overrideSelector(getBudgets, null);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,14 +37,12 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('may have budgets', () => {
-    expect(component.budgets.length).toBeGreaterThanOrEqual(0);
-  });
-
-  it('should display available budget expenses', () => {
-    const budgets = fixture.nativeElement.querySelectorAll(
-      'app-budget-details'
-    );
-    expect(budgets.length).toBeGreaterThanOrEqual(0);
+  it('may have budgets', (done) => {
+    mockGetBudgetsSelector.setResult(null);
+    mockStore.refreshState();
+    component.budgets$.subscribe((budgets) => {
+      expect(budgets).toBeNull();
+      done();
+    });
   });
 });

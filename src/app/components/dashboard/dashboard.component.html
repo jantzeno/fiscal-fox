@@ -1,27 +1,27 @@
 <h1>Fiscal-Fox Budget and Expense Tracker</h1>
 <!-- TODO: Option to create budget -->
 <h2>Budget List</h2>
-<h2 *ngIf="budgets.length < 1">There are no budgets to display</h2>
-<div *ngIf="budgets.length > 0">
-  <!-- TODO: Route to Budget Details -->
-  <!-- TODO: Route to  -->
-  <div *ngFor="let budget of budgets">
-    <h3>{{ budget.name }}</h3>
-    <div *ngIf="budget.expenses.size === 0">
+<div *ngIf="budgets$ | async">
+  <h2 *ngIf="(budgets$ | async).size < 1">There are no budgets to display</h2>
+  <div *ngIf="(budgets$ | async).size > 0">
+    <!-- TODO: Route to Budget Details -->
+    <!-- TODO: Route to  -->
+    <div *ngFor="let budget of budgets$ | async | keyvalue">
+      <h3>{{ budget.value.name }}</h3>
+      <!-- TODO: Update for expenses -->
+      <!-- <div *ngIf="budget.value.expenses.size === 0"> -->
       <ul>
         <li>There are no expenses against this budget</li>
-        <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li>
+        <!-- <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li> -->
       </ul>
-    </div>
-    <div *ngIf="budget.expenses.size > 0">
-      <app-budget-details
-        *ngFor="let expense of budget.expenses.values()"
-        [expense]="expense"
-      ></app-budget-details>
+      <!-- </div> -->
+      <!-- <div *ngIf="budget.value.expenses.size > 0"> -->
+      <!-- <app-budget-details *ngFor="let expense of budget.expenses.values()" [expense]="expense"></app-budget-details> -->
       <ul>
-        <li>Total Expenses: {{ budget.calcExpenseTotal() | currency }}</li>
-        <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li>
+        <!-- <li>Total Expenses: {{ budget.calcExpenseTotal() | currency }}</li> -->
+        <!-- <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li> -->
       </ul>
+      <!-- </div> -->
     </div>
   </div>
 </div>

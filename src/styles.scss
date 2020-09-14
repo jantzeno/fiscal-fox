@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+a {
+  cursor: pointer;
+}
+
+.container.width-full {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
+}

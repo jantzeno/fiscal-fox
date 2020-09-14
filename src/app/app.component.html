@@ -1,1 +1,3 @@
-<app-dashboard></app-dashboard>
+<app-login *ngIf="!(isAuth$ | async)"></app-login>
+
+<app-dashboard *ngIf="isAuth$ | async"></app-dashboard>
