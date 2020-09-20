@@ -1,14 +1,15 @@
-import { AppState, AuthState } from '../application-state.model';
 import { createSelector, State } from '@ngrx/store';
+import { ApplicationState } from '../models/application-state.model';
+import { AuthState } from '../models/auth-state.model';
 
-export const selectAuthState = ({ authState }: AppState) => authState;
+export const selectAuthState = ({ authState }: ApplicationState) => authState;
 
-export const isLoggedIn = createSelector(
+export const getIsAuth = createSelector(
   selectAuthState,
   ({ isAuth }: AuthState) => isAuth
 );
 
-export const whoIsUser = createSelector(
+export const getToken = createSelector(
   selectAuthState,
-  ({ user }: AuthState) => user
+  ({ token }: AuthState) => token
 );

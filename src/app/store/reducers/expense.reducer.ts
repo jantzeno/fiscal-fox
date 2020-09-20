@@ -1,23 +1,84 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { Expense } from '../../models/expense';
+import { Expense } from '../../models/expense.model';
 import * as ExpenseActions from '../actions/expense.actions';
-import { AppState, ExpenseState } from '../application-state.model';
+import { ExpenseState } from '../models/expense-state.model';
 
 export const initialState: ExpenseState = {
-  expenses: new Map<number, Expense>([
-    [1, new Expense('Computer Refresh', 2000, 1, 1)],
-    [2, new Expense('Copier Lease', 1000, 2, 1)],
-    [3, new Expense('Software License', 500, 3, 1)],
-  ]),
+  expenses: [],
+  isLoading: false,
+  errorMessage: null,
 };
 
 const reducer = createReducer(
   initialState,
-  on(ExpenseActions.updateExpense, (state, action) => ({
+  // Load Expenses
+  on(ExpenseActions.loadExpenses, (state) => ({ ...state, isLoading: true })),
+  on(ExpenseActions.loadExpensesSuccess, (state, { expenses }) => ({
     ...state,
+    expenses,
+    isLoading: false,
+    errorMessage: null,
   })),
-  on(ExpenseActions.deleteExpense, (state, action) => ({
+  on(ExpenseActions.loadExpensesFailure, (state, { error }) => ({
     ...state,
+    user: null,
+    isLoading: false,
+    errorMessage: error,
+  })),
+  // Add Expense
+  on(ExpenseActions.addExpense, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(ExpenseActions.addExpenseSuccess, (state, { expense }) => ({
+    ...state,
+    expenses: [...state.expenses, expense],
+    loading: false,
+    errorMessage: null,
+  })),
+  on(ExpenseActions.addExpenseFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    errorMessage: error,
+  })),
+  // Update Expense
+  on(ExpenseActions.updateExpense, (state) => ({ ...state, loading: true })),
+  on(ExpenseActions.updateExpenseSuccess, (state, { index, expense }) => {
+    // Remove outdated expense item
+    const modExpenses: Array<Expense> = state.expenses.filter(
+      (b) => b._id !== expense._id
+    );
+    return {
+      ...state,
+      // expenses: [...modExpenses, expense],
+      // Skip over index
+      // expenses: [
+      //   ...state.expenses.slice(0, index),
+      //   ...state.expenses.slice(index + 1),
+      // ],
+      isLoading: false,
+      errorMessage: null,
+    };
+  }),
+  on(ExpenseActions.updateExpenseFailure, (state, { error }) => {
+    return {
+      ...state,
+      isLoading: false,
+      errorMessage: error,
+    };
+  }),
+  // Delete Expense
+  on(ExpenseActions.removeExpense, (state) => ({ ...state, loading: true })),
+  on(ExpenseActions.removeExpenseSuccess, (state, { expense }) => ({
+    ...state,
+    expenses: state.expenses.filter((b) => b._id !== expense._id),
+    isLoading: false,
+    errorMessage: null,
+  })),
+  on(ExpenseActions.removeExpenseFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    errorMessage: error,
   }))
 );
 

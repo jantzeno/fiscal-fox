@@ -1,6 +1,6 @@
-import { AuthState } from '../application-state.model';
+import { AuthState } from '../models/application-state.model';
 import { login, logout } from '../actions/auth.actions';
-import { AUTH_INITIAL_MOCK_STATE } from '../application-initial-mock-state';
+import { AUTH_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
 import { authReducer } from './auth.reducer';
 
 describe('Auth Reducer', () => {

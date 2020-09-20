@@ -1,5 +1,5 @@
 import { getExpenses } from './expense.selectors';
-import { EXPENSE_INITIAL_MOCK_STATE } from '../application-initial-mock-state';
+import { EXPENSE_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
 
 const state = EXPENSE_INITIAL_MOCK_STATE;
 

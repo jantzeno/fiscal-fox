@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { isLoggedIn } from './store';
-import { AppState } from './store/application-state.model';
+import { getIsAuth } from './store';
+import { ApplicationState } from './store/models/application-state.model';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +12,9 @@ import { AppState } from './store/application-state.model';
 export class AppComponent implements OnInit {
   isAuth$: Observable<boolean>;
 
-  constructor(private store$: Store<AppState>) {}
+  constructor(private store$: Store<ApplicationState>) {}
 
   ngOnInit(): void {
-    this.isAuth$ = this.store$.pipe(select(isLoggedIn));
+    this.isAuth$ = this.store$.pipe(select(getIsAuth));
   }
 }

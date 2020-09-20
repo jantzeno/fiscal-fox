@@ -3,9 +3,9 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { MemoizedSelector } from '@ngrx/store';
-import { BudgetState } from 'src/app/store/application-state.model';
+import { BudgetState } from 'src/app/store/models/application-state.model';
 import { getBudgets } from 'src/app/store';
-import { Budget } from 'src/app/models/budget';
+import { Budget } from 'src/app/models/budget.model';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;

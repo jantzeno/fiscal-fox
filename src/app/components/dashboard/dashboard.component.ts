@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Budget } from 'src/app/models/budget';
-import { Expense } from 'src/app/models/expense';
+import { Budget } from 'src/app/models/budget.model';
+import { Expense } from 'src/app/models/expense.model';
 import { getBudgets, getExpenses } from 'src/app/store';
-import { AppState } from 'src/app/store/application-state.model';
+import { ApplicationState } from 'src/app/store/models/application-state.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,10 +13,10 @@ import { AppState } from 'src/app/store/application-state.model';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  budgets$: Observable<Map<number, Budget>>;
-  expenses$: Observable<Map<number, Expense>>;
+  budgets$: Observable<Array<Budget>>;
+  expenses$: Observable<Array<Expense>>;
 
-  constructor(private store$: Store<AppState>) {}
+  constructor(private store$: Store<ApplicationState>) {}
 
   ngOnInit(): void {
     this.budgets$ = this.store$.pipe(select(getBudgets));

@@ -1,19 +1,10 @@
-export interface IBudget {
-  id: number;
-  name: string;
-  amount: number;
-}
+import { Injectable } from '@angular/core';
 
-export class Budget implements IBudget {
-  id: number;
-  name: string;
-  amount: number;
-
-  constructor(name: string, amount: number, id: number = -1) {
-    this.name = name;
-    this.amount = amount;
-    this.id = id;
-  }
+@Injectable({
+  providedIn: 'root',
+})
+export class LogicService {
+  constructor() {}
 
   // TODO: Figure out wher to put this
   // calcExpenseTotal(): number {

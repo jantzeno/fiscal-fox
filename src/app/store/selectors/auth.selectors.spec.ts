@@ -1,5 +1,5 @@
 import { isLoggedIn, whoIsUser } from './auth.selectors';
-import { AUTH_INITIAL_MOCK_STATE } from '../application-initial-mock-state';
+import { AUTH_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
 
 const state = AUTH_INITIAL_MOCK_STATE;
 

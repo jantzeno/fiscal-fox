@@ -1,5 +1,5 @@
 import { getBudgets } from './budget.selectors';
-import { BUDGET_INITIAL_MOCK_STATE } from '../application-initial-mock-state';
+import { BUDGET_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
 
 const state = BUDGET_INITIAL_MOCK_STATE;
 
