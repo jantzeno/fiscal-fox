@@ -4,6 +4,41 @@
 
 The project is for learning web development using the MEAN stack, specifically Angular and Node.js.
 
+## Tested Using
+
+- Node.js, v14.8.0
+- npm, v6.14.7
+
+## Setup
+
+1. Clone this repo and the fiscal-fox-server repo, https://github.com/jantzeno/fiscal-fox-server
+
+2. Install the npm packages
+
+```bash
+npm install
+```
+
+3. Run the fiscal-fox-server and fiscal-fox Angular server
+
+- Fiscal-Fox
+
+```bash
+./node_modules/.bin/ng serve
+```
+
+- Fiscal-Fox-Server
+
+```bash
+npm install
+npm run mock-db
+npm start
+```
+
+## What Works
+
+Currently, the main functionality is only the ability to login and authenticate a user from the server. Test login credentials are listed in the fiscal-fox-server repo README.
+
 ## Abstract
 
 The Budge and Expense Tracker, codename Fiscal Fox, is intended to aide communication between the Financial Managers and Program Managers within an organization to accomplish the enterprise’s goals. The web-based single page application (SPA) is intended to replace the distribution and coordination of the enterprise budget execution via copies of a spreadsheet. Managing the budget via copies of a master spreadsheet is inefficient and changing one spreadsheet among dozens of copies invalids the others and requires manual reconciliation before the budget status can be determined. The proposed SPA will allow Financial Managers to create budget items and view the status of the budget and allow Program Managers to record expenses against the budget items and view the status of a programs allotted budget. The SPA will be developed using Angular with TypeScript, Node.js, and SQLite. The application will utilize behavior-driven development using Jasmine and Karma, as well as Protractor for end-to-end (E2E) testing.
@@ -56,3 +91,4 @@ Possible, expense options: Date of expense, Method of expense (Transfer, CC. Che
 
 - Budget
 - Expense
+- User
