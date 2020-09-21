@@ -11,8 +11,8 @@ export const initialState: UserState = {
 const reducer = createReducer(
   initialState,
   // Get User
-  on(UserActions.loadUser, (state) => ({ ...state, loading: true })),
-  on(UserActions.loadUserSucess, (state, { user }) => ({
+  on(UserActions.loadUser, (state) => ({ ...state, isLoading: true })),
+  on(UserActions.loadUserSuccess, (state, { user }) => ({
     ...state,
     user,
     isLoading: false,
@@ -25,8 +25,8 @@ const reducer = createReducer(
     errorMessage: error,
   })),
   // Update User
-  on(UserActions.updateUser, (state) => ({ ...state, loading: true })),
-  on(UserActions.updateUserSucess, (state, { user }) => ({
+  on(UserActions.updateUser, (state) => ({ ...state, isLoading: true })),
+  on(UserActions.updateUserSuccess, (state, { user }) => ({
     ...state,
     user,
     isLoading: false,

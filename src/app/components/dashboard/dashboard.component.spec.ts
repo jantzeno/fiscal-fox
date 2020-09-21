@@ -3,7 +3,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { MemoizedSelector } from '@ngrx/store';
-import { BudgetState } from 'src/app/store/models/application-state.model';
+import { BudgetState } from 'src/app/store/models/budget-state.model';
 import { getBudgets } from 'src/app/store';
 import { Budget } from 'src/app/models/budget.model';
 
@@ -11,10 +11,7 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let mockStore: MockStore;
-  let mockGetBudgetsSelector: MemoizedSelector<
-    BudgetState,
-    Map<number, Budget>
-  >;
+  let mockGetBudgetsSelector: MemoizedSelector<BudgetState, Array<Budget>>;
 
   // TODO: Make this better after getting used to Ngrx
 

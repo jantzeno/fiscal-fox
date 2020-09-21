@@ -1,4 +1,4 @@
-const enum Role {
+export const enum Role {
   PROGRAM_MANAGER = 'PROGRAM_MANAGER',
   BUDGET_ANALYST = 'BUDGET_ANALYST',
 }

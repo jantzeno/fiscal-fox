@@ -5,17 +5,19 @@ import { AuthState } from '../models/auth-state.model';
 export const initialState: AuthState = {
   isAuth: false,
   token: null,
-  isTokenExpired: false,
   isLoading: false,
   errorMessage: null,
 };
 
 const reducer = createReducer(
   initialState,
-  on(AuthActions.requestRegistration, (state) => ({ ...state, loading: true })),
+  on(AuthActions.requestRegistration, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
   on(AuthActions.requestRegistrationSuccess, (state) => ({
     ...state,
-    isAuth: true,
+    isAuth: false,
     errorMessage: null,
   })),
   on(AuthActions.requestRegistrationFailure, (state, { error }) => ({
@@ -24,7 +26,7 @@ const reducer = createReducer(
     isLoading: false,
     errorMessage: error,
   })),
-  on(AuthActions.requestLogin, (state) => ({ ...state, loading: true })),
+  on(AuthActions.requestLogin, (state) => ({ ...state, isLoading: true })),
   on(AuthActions.requestLoginSuccess, (state, { token }) => ({
     ...state,
     isAuth: true,

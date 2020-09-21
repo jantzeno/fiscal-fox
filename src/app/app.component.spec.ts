@@ -3,8 +3,8 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { AppComponent } from './app.component';
 import { MemoizedSelector } from '@ngrx/store';
-import { AuthState } from './store/models/application-state.model';
-import { isLoggedIn } from './store';
+import { AuthState } from './store/models/auth-state.model';
+import { getIsAuth } from './store';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     mockStore = TestBed.inject(MockStore);
-    mockGetIsAuthSelector = mockStore.overrideSelector(isLoggedIn, false);
+    mockGetIsAuthSelector = mockStore.overrideSelector(getIsAuth, false);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

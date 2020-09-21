@@ -2,7 +2,7 @@ import { createAction, props, union } from '@ngrx/store';
 import { User } from '../../models/user.model';
 
 export const loadUser = createAction('[User] Get User');
-export const loadUserSucess = createAction(
+export const loadUserSuccess = createAction(
   '[API] Load User Success',
   props<{ user: User }>()
 );
@@ -12,7 +12,7 @@ export const loadUserFailure = createAction(
 );
 
 export const updateUser = createAction('[User] Update User');
-export const updateUserSucess = createAction(
+export const updateUserSuccess = createAction(
   '[API] Update User Success',
   props<{ user: User }>()
 );
@@ -23,10 +23,10 @@ export const updateUserFailure = createAction(
 
 const userActions = union({
   loadUser,
-  loadUserSucess,
+  loadUserSuccess,
   loadUserFailure,
   updateUser,
-  updateUserSucess,
+  updateUserSuccess,
   updateUserFailure,
 });
 

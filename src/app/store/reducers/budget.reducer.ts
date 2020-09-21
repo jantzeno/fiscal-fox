@@ -11,6 +11,7 @@ export const initialState: BudgetState = {
 
 const reducer = createReducer(
   initialState,
+
   // Load Budgets
   on(BudgetActions.loadBudgets, (state) => ({ ...state, isLoading: true })),
   on(BudgetActions.loadBudgetsSuccess, (state, { budgets }) => ({
@@ -25,6 +26,7 @@ const reducer = createReducer(
     isLoading: false,
     errorMessage: error,
   })),
+
   // Add Budget
   on(BudgetActions.addBudget, (state) => ({
     ...state,
@@ -33,7 +35,7 @@ const reducer = createReducer(
   on(BudgetActions.addBudgetSuccess, (state, { budget }) => ({
     ...state,
     budgets: [...state.budgets, budget],
-    loading: false,
+    isLoading: false,
     errorMessage: null,
   })),
   on(BudgetActions.addBudgetFailure, (state, { error }) => ({
@@ -41,6 +43,7 @@ const reducer = createReducer(
     isLoading: false,
     errorMessage: error,
   })),
+
   // Update Budget
   on(BudgetActions.updateBudget, (state) => ({ ...state, loading: true })),
   on(BudgetActions.updateBudgetSuccess, (state, { index, budget }) => {
@@ -50,10 +53,12 @@ const reducer = createReducer(
     );
     return {
       ...state,
-      // budgets: [...modBudgets, budget],
-      // Skip over index
+      // Modified expense is moved to the end
+      budgets: [...modBudgets, budget],
+      // Modfied expense retains same position
       // budgets: [
       //   ...state.budgets.slice(0, index),
+      //   budget,
       //   ...state.budgets.slice(index + 1),
       // ],
       isLoading: false,
@@ -67,8 +72,9 @@ const reducer = createReducer(
       errorMessage: error,
     };
   }),
-  // Delete Budget
-  on(BudgetActions.removeBudget, (state) => ({ ...state, loading: true })),
+
+  // Remove Budget
+  on(BudgetActions.removeBudget, (state) => ({ ...state, isLoading: true })),
   on(BudgetActions.removeBudgetSuccess, (state, { budget }) => ({
     ...state,
     budgets: state.budgets.filter((b) => b._id !== budget._id),

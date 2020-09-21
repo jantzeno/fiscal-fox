@@ -10,8 +10,8 @@ export const getBudgets = createSelector(
   ({ budgets }: BudgetState) => budgets
 );
 
-export const getBudget = createSelector(
+export const getBudgetById = createSelector(
   selectBudgetState,
   ({ budgets }: BudgetState, props) =>
-    budgets.filter((b) => b._id === props.selectedBudget)
+    budgets.find((b) => b._id === props.budgetId)
 );

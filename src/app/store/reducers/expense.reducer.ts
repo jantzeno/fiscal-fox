@@ -33,7 +33,7 @@ const reducer = createReducer(
   on(ExpenseActions.addExpenseSuccess, (state, { expense }) => ({
     ...state,
     expenses: [...state.expenses, expense],
-    loading: false,
+    isLoading: false,
     errorMessage: null,
   })),
   on(ExpenseActions.addExpenseFailure, (state, { error }) => ({
@@ -50,10 +50,12 @@ const reducer = createReducer(
     );
     return {
       ...state,
-      // expenses: [...modExpenses, expense],
-      // Skip over index
+      // Modified expense is moved to the end
+      expenses: [...modExpenses, expense],
+      // Replace at same index
       // expenses: [
       //   ...state.expenses.slice(0, index),
+      //   expense
       //   ...state.expenses.slice(index + 1),
       // ],
       isLoading: false,
@@ -68,7 +70,7 @@ const reducer = createReducer(
     };
   }),
   // Delete Expense
-  on(ExpenseActions.removeExpense, (state) => ({ ...state, loading: true })),
+  on(ExpenseActions.removeExpense, (state) => ({ ...state, isLoading: true })),
   on(ExpenseActions.removeExpenseSuccess, (state, { expense }) => ({
     ...state,
     expenses: state.expenses.filter((b) => b._id !== expense._id),
