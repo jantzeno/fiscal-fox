@@ -13,14 +13,6 @@ export const AUTH_INITIAL_MOCK_STATE: AuthState = {
   errorMessage: null,
 };
 
-export const AUTH_LOGGED_IN_MOCK_STATE: AuthState = {
-  isAuth: true,
-  isRegistered: false,
-  token: 'token',
-  isLoading: false,
-  errorMessage: null,
-};
-
 export const BUDGET_INITIAL_MOCK_STATE: BudgetState = {
   budgets: [],
   isLoading: true,
