@@ -3,14 +3,21 @@ export const enum Role {
   BUDGET_ANALYST = 'BUDGET_ANALYST',
 }
 
+export interface RegistrationResponse {
+  isRegistered: boolean;
+}
+
 export interface AuthResponse {
   user: UserResponse;
   token: string;
 }
 
+export interface LogoutResponse {
+  isLoggedOut: boolean;
+}
+
 export interface UserResponse {
   username: string;
-  password?: string;
   role: Role;
   email: string;
 }

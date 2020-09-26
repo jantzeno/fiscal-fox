@@ -7,7 +7,16 @@ import { Role } from '../../models/user.model';
 
 export const AUTH_INITIAL_MOCK_STATE: AuthState = {
   isAuth: false,
+  isRegistered: false,
   token: null,
+  isLoading: false,
+  errorMessage: null,
+};
+
+export const AUTH_LOGGED_IN_MOCK_STATE: AuthState = {
+  isAuth: true,
+  isRegistered: false,
+  token: 'token',
   isLoading: false,
   errorMessage: null,
 };
@@ -51,7 +60,6 @@ export const USER_INITIAL_MOCK_STATE: UserState = {
 export const USER_LOADED_MOCK_STATE: UserState = {
   user: {
     username: 'mrfox',
-    password: 'incredible',
     email: 'mrfox@burrow.com',
     role: Role.PROGRAM_MANAGER,
   },

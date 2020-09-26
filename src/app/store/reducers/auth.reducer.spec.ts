@@ -3,6 +3,9 @@ import {
   requestLogin,
   requestLoginSuccess,
   requestLoginFailure,
+  requestLogout,
+  requestLogoutSuccess,
+  requestLogoutFailure,
   requestRegistration,
   requestRegistrationSuccess,
   requestRegistrationFailure,
@@ -17,10 +20,7 @@ describe('Auth Reducer', () => {
     const action = requestLogin({ username: 'boggis', password: 'farmer' });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      token: null,
-      isAuth: false,
       isLoading: true,
-      errorMessage: null,
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
@@ -32,8 +32,6 @@ describe('Auth Reducer', () => {
       ...AUTH_INITIAL_MOCK_STATE,
       token: 'token',
       isAuth: true,
-      isLoading: false,
-      errorMessage: null,
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
@@ -43,8 +41,38 @@ describe('Auth Reducer', () => {
     const action = requestLoginFailure({ error: 'error' });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      isAuth: false,
-      isLoading: false,
+      errorMessage: 'error',
+    };
+    const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
+    expect(actual).toEqual(expected);
+  });
+
+  // Logout Tests
+  it('should set the isLoading boolean to true on `requestLogout`', () => {
+    const action = requestLogout({ token: 'token' });
+    const expected: AuthState = {
+      ...AUTH_INITIAL_MOCK_STATE,
+      isAuth: true,
+      isLoading: true,
+      token: 'token',
+    };
+    const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
+    expect(actual).toEqual(expected);
+  });
+
+  it('should set the token and isAuth on `requestLoginSuccess`', () => {
+    const action = requestLogoutSuccess({ isLoggedOut: true });
+    const expected: AuthState = {
+      ...AUTH_INITIAL_MOCK_STATE,
+    };
+    const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
+    expect(actual).toEqual(expected);
+  });
+
+  it('should set the error `requestLoginFailure`', () => {
+    const action = requestLogoutFailure({ error: 'error' });
+    const expected: AuthState = {
+      ...AUTH_INITIAL_MOCK_STATE,
       errorMessage: 'error',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
@@ -56,30 +84,24 @@ describe('Auth Reducer', () => {
     const action = requestRegistration({
       user: {
         username: 'test',
-        password: '12345',
         email: 'test@test.com',
         role: Role.PROGRAM_MANAGER,
       },
+      password: '12345',
     });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      token: null,
-      isAuth: false,
       isLoading: true,
-      errorMessage: null,
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
   });
 
   it('should set the token and isAuth on `requestRegistrationSuccess`', () => {
-    const action = requestRegistrationSuccess({ success: true });
+    const action = requestRegistrationSuccess({ isRegistered: true });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      token: null,
-      isAuth: false,
-      isLoading: false,
-      errorMessage: null,
+      isRegistered: true,
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
@@ -89,8 +111,6 @@ describe('Auth Reducer', () => {
     const action = requestRegistrationFailure({ error: 'error' });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      isAuth: false,
-      isLoading: false,
       errorMessage: 'error',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);

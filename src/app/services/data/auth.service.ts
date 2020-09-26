@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthResponse, UserResponse } from '../../models/user.model';
+import {
+  AuthResponse,
+  RegistrationResponse,
+  LogoutResponse,
+  Role,
+} from '../../models/user.model';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000/api';
@@ -12,8 +17,13 @@ const AUTH_URL = `${BASE_URL}/auth`;
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  register(username, password, email, role): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${AUTH_URL}/register`, {
+  register(
+    username: string,
+    password: string,
+    email: string,
+    role: Role
+  ): Observable<RegistrationResponse> {
+    return this.http.post<RegistrationResponse>(`${AUTH_URL}/register`, {
       username,
       password,
       email,
@@ -21,7 +31,7 @@ export class AuthService {
     });
   }
 
-  login(username, password): Observable<AuthResponse> {
+  login(username: string, password: string): Observable<AuthResponse> {
     console.log('Called Login');
     return this.http.post<AuthResponse>(`${AUTH_URL}/login`, {
       username,
@@ -29,7 +39,7 @@ export class AuthService {
     });
   }
 
-  logout(user: UserResponse): Observable<UserResponse> {
-    return this.http.post<UserResponse>(`${AUTH_URL}/logout`, { user });
+  logout(token: string): Observable<LogoutResponse> {
+    return this.http.post<LogoutResponse>(`${AUTH_URL}/logout`, { token });
   }
 }

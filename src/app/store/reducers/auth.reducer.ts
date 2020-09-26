@@ -4,6 +4,7 @@ import { AuthState } from '../models/auth-state.model';
 
 export const initialState: AuthState = {
   isAuth: false,
+  isRegistered: false,
   token: null,
   isLoading: false,
   errorMessage: null,
@@ -15,8 +16,9 @@ const reducer = createReducer(
     ...state,
     isLoading: true,
   })),
-  on(AuthActions.requestRegistrationSuccess, (state) => ({
+  on(AuthActions.requestRegistrationSuccess, (state, { isRegistered }) => ({
     ...state,
+    isRegistered: isRegistered,
     isAuth: false,
     errorMessage: null,
   })),
@@ -38,6 +40,20 @@ const reducer = createReducer(
     isAuth: false,
     isLoading: false,
     token: null,
+    errorMessage: error,
+  })),
+  on(AuthActions.requestLogout, (state) => ({ ...state, isLoading: true })),
+  on(AuthActions.requestLogoutSuccess, (state, { isLoggedOut }) => ({
+    ...state,
+    isAuth: isLoggedOut,
+    errorMessage: null,
+    token: false,
+  })),
+  on(AuthActions.requestLoginFailure, (state, { error }) => ({
+    ...state,
+    isAuth: false,
+    isLoading: false,
+    token: false,
     errorMessage: error,
   }))
 );

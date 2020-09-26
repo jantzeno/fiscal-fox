@@ -4,11 +4,11 @@ import { User } from '../../models/user.model';
 // Register new User
 export const requestRegistration = createAction(
   '[API] Request Registration',
-  props<{ user: User }>()
+  props<{ user: User; password: string }>()
 );
 export const requestRegistrationSuccess = createAction(
   '[API] Request Registration Success',
-  props<{ success: boolean }>()
+  props<{ isRegistered: boolean }>()
 );
 export const requestRegistrationFailure = createAction(
   '[API] Request Registration Failure',
@@ -29,6 +29,20 @@ export const requestLoginFailure = createAction(
   props<{ error: any }>()
 );
 
+// Logout User
+export const requestLogout = createAction(
+  '[API] Request Logout',
+  props<{ token: string }>()
+);
+export const requestLogoutSuccess = createAction(
+  '[API] Request Logout Success',
+  props<{ isLoggedOut: boolean }>()
+);
+export const requestLogoutFailure = createAction(
+  '[API] Request Logout Failure',
+  props<{ error: any }>()
+);
+
 const authActions = union({
   requestRegistration,
   requestRegistrationSuccess,
@@ -36,6 +50,9 @@ const authActions = union({
   requestLogin,
   requestLoginSuccess,
   requestLoginFailure,
+  requestLogout,
+  requestLogoutSuccess,
+  requestLogoutFailure,
 });
 
 export type AuthActionTypes = typeof authActions;
