@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-expense-add',
-  templateUrl: './expense-add.component.html',
-  styleUrls: ['./expense-add.component.scss'],
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss'],
 })
 export class ExpenseAddComponent implements OnInit {
   constructor() {}

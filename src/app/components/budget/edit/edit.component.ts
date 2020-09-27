@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-budget-edit',
-  templateUrl: './budget-edit.component.html',
-  styleUrls: ['./budget-edit.component.scss']
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss'],
 })
 export class BudgetEditComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

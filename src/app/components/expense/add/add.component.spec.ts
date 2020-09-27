@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpenseAddComponent } from './expense-add.component';
+import { ExpenseAddComponent } from './add.component';
 
-describe('ExpenseAddComponent', () => {
+describe('AddComponent', () => {
   let component: ExpenseAddComponent;
   let fixture: ComponentFixture<ExpenseAddComponent>;
 

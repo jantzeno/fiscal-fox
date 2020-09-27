@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BudgetDetailsComponent } from './budget-details.component';
-import { Expense } from 'src/app/models/expense.model';
+import { BudgetDetailsComponent } from './details.component';
 
-describe('BudgetDetailsComponent', () => {
+describe('DetailsComponent', () => {
   let component: BudgetDetailsComponent;
   let fixture: ComponentFixture<BudgetDetailsComponent>;
 

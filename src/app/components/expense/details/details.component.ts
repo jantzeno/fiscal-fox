@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-expense-details',
-  templateUrl: './expense-details.component.html',
-  styleUrls: ['./expense-details.component.scss']
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
 export class ExpenseDetailsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
