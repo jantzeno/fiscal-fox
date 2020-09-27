@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -12,7 +13,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AuthService],
+      providers: [AuthService, provideMockStore()],
     });
     service = TestBed.inject(AuthService);
   });

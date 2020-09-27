@@ -8,9 +8,9 @@ import { Role } from '../../models/user.model';
 export const AUTH_INITIAL_MOCK_STATE: AuthState = {
   isAuth: false,
   isRegistered: false,
-  token: null,
+  token: '',
   isLoading: false,
-  errorMessage: null,
+  errorMessage: '',
 };
 
 export const BUDGET_INITIAL_MOCK_STATE: BudgetState = {

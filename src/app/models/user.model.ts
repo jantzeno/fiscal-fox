@@ -13,7 +13,7 @@ export interface AuthResponse {
 }
 
 export interface LogoutResponse {
-  isLoggedOut: boolean;
+  isAuth: boolean;
 }
 
 export interface UserResponse {

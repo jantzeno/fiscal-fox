@@ -30,13 +30,10 @@ export const requestLoginFailure = createAction(
 );
 
 // Logout User
-export const requestLogout = createAction(
-  '[API] Request Logout',
-  props<{ token: string }>()
-);
+export const requestLogout = createAction('[API] Request Logout');
 export const requestLogoutSuccess = createAction(
   '[API] Request Logout Success',
-  props<{ isLoggedOut: boolean }>()
+  props<{ isAuth: boolean }>()
 );
 export const requestLogoutFailure = createAction(
   '[API] Request Logout Failure',

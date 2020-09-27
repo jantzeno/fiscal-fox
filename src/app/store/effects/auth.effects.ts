@@ -12,13 +12,16 @@ import {
   requestRegistrationSuccess,
 } from '../actions/auth.actions';
 import { AuthService } from '../../services/data/auth.service';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   AuthResponse,
   LogoutResponse,
   RegistrationResponse,
 } from '../../models/user.model';
+import { ApplicationState } from '../models/application-state.model';
+import { Store } from '@ngrx/store';
+import { getToken } from '../selectors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthEffects {
@@ -53,19 +56,41 @@ export class AuthEffects {
   );
 
   // Logout
-  loout$ = createEffect(() =>
+  // logout$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(requestLogout),
+  //     withLatestFrom(this.store$.select(getToken)),
+  //     switchMap(([action, token]) =>
+  //       this.authService.logout(token).pipe(
+  //         map(({ isAuth }: LogoutResponse) => requestLogoutSuccess({ isAuth })),
+  //         catchError((error) => of(requestLogoutFailure({ error })))
+  //       )
+  //     )
+  //   )
+  // );
+
+  logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(requestLogout),
-      switchMap(({ token }) =>
-        this.authService.logout(token).pipe(
-          map(({ isLoggedOut }: LogoutResponse) =>
-            requestLogoutSuccess({ isLoggedOut })
-          ),
-          catchError((error) => of(requestLogoutFailure({ error })))
+      switchMap((action) =>
+        of(action).pipe(
+          withLatestFrom(this.store$.select(getToken)),
+          switchMap(([action, token]) =>
+            this.authService.logout(token).pipe(
+              map(({ isAuth }: LogoutResponse) =>
+                requestLogoutSuccess({ isAuth })
+              ),
+              catchError((error) => of(requestLogoutFailure({ error })))
+            )
+          )
         )
       )
     )
   );
 
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private store$: Store<ApplicationState>
+  ) {}
 }

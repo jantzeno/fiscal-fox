@@ -5,9 +5,9 @@ import { AuthState } from '../models/auth-state.model';
 export const initialState: AuthState = {
   isAuth: false,
   isRegistered: false,
-  token: null,
+  token: '',
   isLoading: false,
-  errorMessage: null,
+  errorMessage: '',
 };
 
 const reducer = createReducer(
@@ -20,7 +20,8 @@ const reducer = createReducer(
     ...state,
     isRegistered: isRegistered,
     isAuth: false,
-    errorMessage: null,
+    isLoading: false,
+    errorMessage: '',
   })),
   on(AuthActions.requestRegistrationFailure, (state, { error }) => ({
     ...state,
@@ -32,28 +33,30 @@ const reducer = createReducer(
   on(AuthActions.requestLoginSuccess, (state, { token }) => ({
     ...state,
     isAuth: true,
-    errorMessage: null,
     token: token,
+    isLoading: false,
+    errorMessage: '',
   })),
   on(AuthActions.requestLoginFailure, (state, { error }) => ({
     ...state,
     isAuth: false,
     isLoading: false,
-    token: null,
+    token: '',
     errorMessage: error,
   })),
   on(AuthActions.requestLogout, (state) => ({ ...state, isLoading: true })),
-  on(AuthActions.requestLogoutSuccess, (state, { isLoggedOut }) => ({
+  on(AuthActions.requestLogoutSuccess, (state, { isAuth }) => ({
     ...state,
-    isAuth: isLoggedOut,
-    errorMessage: null,
-    token: false,
+    isAuth: isAuth,
+    isLoading: false,
+    errorMessage: '',
+    token: '',
   })),
-  on(AuthActions.requestLoginFailure, (state, { error }) => ({
+  on(AuthActions.requestLogoutFailure, (state, { error }) => ({
     ...state,
     isAuth: false,
     isLoading: false,
-    token: false,
+    token: '',
     errorMessage: error,
   }))
 );

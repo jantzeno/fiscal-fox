@@ -49,21 +49,20 @@ describe('Auth Reducer', () => {
 
   // Logout Tests
   it('should set the isLoading boolean to true on `requestLogout`', () => {
-    const action = requestLogout({ token: 'token' });
+    const action = requestLogout();
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      isAuth: true,
       isLoading: true,
-      token: 'token',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
   });
 
   it('should set the token and isAuth on `requestLoginSuccess`', () => {
-    const action = requestLogoutSuccess({ isLoggedOut: true });
+    const action = requestLogoutSuccess({ isAuth: false });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
+      token: '',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
