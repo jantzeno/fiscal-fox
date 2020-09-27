@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './header/nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const components = [
   DashboardComponent,
@@ -26,6 +27,7 @@ const components = [
   HeaderComponent,
   LoginComponent,
   NavComponent,
+  PageNotFoundComponent,
   RegisterComponent,
 ];
 

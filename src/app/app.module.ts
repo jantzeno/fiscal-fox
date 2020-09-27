@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { NgrxModule } from './ngrx.module';
 import { ComponentsModule } from './components/components.module';
 
@@ -11,6 +12,7 @@ import { ComponentsModule } from './components/components.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     CommonModule,
     NgrxModule,
