@@ -2,4 +2,4 @@ export * from './actions';
 export * from './effects';
 export * from './reducers';
 export * from './selectors';
-export * from './basic-route-serializer';
+export * from './custom-route-serializer';

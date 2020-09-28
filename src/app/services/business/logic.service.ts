@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Budget } from 'src/app/models/budget.model';
+import { Expense } from '../../models/expense.model';
 
 @Injectable({
   providedIn: 'root',
@@ -6,23 +8,44 @@ import { Injectable } from '@angular/core';
 export class LogicService {
   constructor() {}
 
-  // TODO: Figure out wher to put this
-  // calcExpenseTotal(): number {
-  //   let total = 0;
-  //   if (this.expenses) {
-  //     for (let expense of this.expenses.values()) {
-  //       total += expense.amount;
-  //     }
-  //   }
-  //   return total;
-  // }
+  filterExpensesForBudget(budget: Budget, expenses: Expense[]): Expense[] {
+    return Object.values(expenses).filter(
+      (expense) => expense.budgetId === budget.id
+    );
+  }
 
-  // calcRemainingBudget(): number {
-  //   let remaining = 0;
-  //   let expenses = this.calcExpenseTotal();
-  //   if (this.amount) {
-  //     remaining = this.amount - expenses;
-  //   }
-  //   return remaining;
-  // }
+  calcExpenseTotal(expenses: Expense[]): number {
+    let total = 0;
+    if (expenses) {
+      for (let expense of expenses) {
+        total += expense.amount;
+      }
+    }
+    return total;
+  }
+
+  calcExpenseTotalForBudget(budget: Budget, expenses: Expense[]): number {
+    let total = 0;
+    let budgetExpenses = this.filterExpensesForBudget(budget, expenses);
+    total = this.calcExpenseTotal(budgetExpenses);
+    return total;
+  }
+
+  calcRemainingBudget(budget: Budget, expenses: Expense[]): number {
+    let remaining = 0;
+    let budgetExpenses = this.filterExpensesForBudget(budget, expenses);
+    let expenseTotal = this.calcExpenseTotal(budgetExpenses);
+    if (budget.amount) {
+      remaining = budget.amount - expenseTotal;
+    }
+    return remaining;
+  }
+
+  countExpenses(budget: Budget, expenses: Expense[]): number {
+    let count = -1;
+    if (budget && expenses) {
+      count = this.filterExpensesForBudget(budget, expenses).length;
+    }
+    return count;
+  }
 }

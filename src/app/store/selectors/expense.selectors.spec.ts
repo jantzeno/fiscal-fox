@@ -11,7 +11,7 @@ describe('Expense Selectors', () => {
   it('should retrieve the selected expense from expenseState', () => {
     const requestedExpense = state.expenses[0];
     expect(
-      getExpenseById.projector(state, { expenseId: requestedExpense._id })
+      getExpenseById.projector(state, { expenseId: requestedExpense.id })
     ).toBe(requestedExpense);
   });
 });

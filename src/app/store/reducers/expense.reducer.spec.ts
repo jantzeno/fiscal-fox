@@ -37,7 +37,6 @@ describe('Expense Reducer', () => {
   it('should modify a expense on `updateExpense`', () => {
     const inputExpense = EXPENSE_LOADED_MOCK_STATE.expenses[0];
     const action = ExpenseActions.updateExpenseSuccess({
-      index: 1,
       expense: inputExpense,
     });
     const expected: ExpenseState = {

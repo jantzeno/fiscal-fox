@@ -12,7 +12,6 @@ import {
 } from '../actions/auth.actions';
 import { AUTH_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
 import { authReducer } from './auth.reducer';
-import { Role } from 'src/app/models/user.model';
 
 describe('Auth Reducer', () => {
   // Login Tests
@@ -84,7 +83,7 @@ describe('Auth Reducer', () => {
       user: {
         username: 'test',
         email: 'test@test.com',
-        role: Role.PROGRAM_MANAGER,
+        role: 'program manager',
       },
       password: '12345',
     });

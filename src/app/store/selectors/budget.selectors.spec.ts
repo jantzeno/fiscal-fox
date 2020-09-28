@@ -11,7 +11,7 @@ describe('Budget Selectors', () => {
   it('should retrieve the selected budget from budgetState', () => {
     const requestedBudget = state.budgets[0];
     expect(
-      getBudgetById.projector(state, { budgetId: requestedBudget._id })
+      getBudgetById.projector(state, { budgetId: requestedBudget.id })
     ).toBe(requestedBudget);
   });
 });

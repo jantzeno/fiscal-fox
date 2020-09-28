@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BudgetAddComponent } from './budget/add/add.component';
@@ -11,7 +12,6 @@ import { ExpenseAddComponent } from './expense/add/add.component';
 import { ExpenseDetailsComponent } from './expense/details/details.component';
 import { ExpenseEditComponent } from './expense/edit/edit.component';
 import { HeaderComponent } from './header/header.component';
-import { NavComponent } from './header/nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -26,14 +26,19 @@ const components = [
   ExpenseEditComponent,
   HeaderComponent,
   LoginComponent,
-  NavComponent,
   PageNotFoundComponent,
   RegisterComponent,
 ];
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgbModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [...components],
 })
 export class ComponentsModule {}

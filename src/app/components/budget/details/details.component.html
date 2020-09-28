@@ -1,1 +1,4 @@
-<p>details works!</p>
+<ng-container *ngIf="budget$ | async as budget">
+  <h2>{{ budget.name }}</h2>
+  <div>{{ budget.amount }}</div>
+</ng-container>

@@ -74,9 +74,8 @@ export class AuthEffects {
       ofType(requestLogout),
       switchMap((action) =>
         of(action).pipe(
-          withLatestFrom(this.store$.select(getToken)),
-          switchMap(([action, token]) =>
-            this.authService.logout(token).pipe(
+          switchMap(() =>
+            this.authService.logout().pipe(
               map(({ isAuth }: LogoutResponse) =>
                 requestLogoutSuccess({ isAuth })
               ),

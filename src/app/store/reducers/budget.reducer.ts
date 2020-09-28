@@ -16,7 +16,7 @@ const reducer = createReducer(
   on(BudgetActions.loadBudgets, (state) => ({ ...state, isLoading: true })),
   on(BudgetActions.loadBudgetsSuccess, (state, { budgets }) => ({
     ...state,
-    budgets,
+    budgets: budgets,
     isLoading: false,
     errorMessage: null,
   })),
@@ -46,10 +46,10 @@ const reducer = createReducer(
 
   // Update Budget
   on(BudgetActions.updateBudget, (state) => ({ ...state, loading: true })),
-  on(BudgetActions.updateBudgetSuccess, (state, { index, budget }) => {
+  on(BudgetActions.updateBudgetSuccess, (state, { budget }) => {
     // Remove outdated budget item
     const modBudgets: Array<Budget> = state.budgets.filter(
-      (b) => b._id !== budget._id
+      (b) => b.id !== budget.id
     );
     return {
       ...state,
@@ -77,7 +77,7 @@ const reducer = createReducer(
   on(BudgetActions.removeBudget, (state) => ({ ...state, isLoading: true })),
   on(BudgetActions.removeBudgetSuccess, (state, { budget }) => ({
     ...state,
-    budgets: state.budgets.filter((b) => b._id !== budget._id),
+    budgets: state.budgets.filter((b) => b.id !== budget.id),
     isLoading: false,
     errorMessage: null,
   })),

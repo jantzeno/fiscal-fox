@@ -30,11 +30,11 @@ export const addBudgetFailure = createAction(
 // TOOD: Determine if index is needed
 export const updateBudget = createAction(
   '[API] Update Budget',
-  props<{ index: number; budget: Budget }>()
+  props<{ budget: Budget }>()
 );
 export const updateBudgetSuccess = createAction(
   '[API] Update Budget Success',
-  props<{ index: number; budget: Budget }>()
+  props<{ budget: Budget }>()
 );
 export const updateBudgetFailure = createAction(
   '[API] Update Budget Failure',

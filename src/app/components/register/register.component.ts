@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { User } from 'src/app/models/user.model';
 import { ApplicationState } from 'src/app/store/models/application-state.model';
-import { getIsRegistered, requestRegistration } from '../../store';
+import { getIsRegistered, go, requestRegistration } from '../../store';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store$: Store<ApplicationState>
+    private store: Store<ApplicationState>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class RegisterComponent implements OnInit {
       role: ['', [Validators.required]],
     });
 
-    this.isRegistered$ = this.store$.pipe(select(getIsRegistered));
+    this.isRegistered$ = this.store.pipe(select(getIsRegistered));
   }
 
   // Validate Input
@@ -65,9 +67,15 @@ export class RegisterComponent implements OnInit {
     const password = this.registerForm.get('password').value;
 
     console.log(inputUser);
-    this.store$.dispatch(requestRegistration({ user: inputUser, password }));
+    this.store.dispatch(requestRegistration({ user: inputUser, password }));
+
+    if (this.store.select(getIsRegistered)) {
+      this.store.dispatch(go({ path: ['login'] }));
+    }
   }
 
   // Cancel and return to Login page
-  onCancel() {}
+  onCancel() {
+    // this.store.dispatch(go({ path: ['login'] }));
+  }
 }

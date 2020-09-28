@@ -15,7 +15,7 @@ const reducer = createReducer(
   on(ExpenseActions.loadExpenses, (state) => ({ ...state, isLoading: true })),
   on(ExpenseActions.loadExpensesSuccess, (state, { expenses }) => ({
     ...state,
-    expenses,
+    expenses: expenses,
     isLoading: false,
     errorMessage: null,
   })),
@@ -43,10 +43,10 @@ const reducer = createReducer(
   })),
   // Update Expense
   on(ExpenseActions.updateExpense, (state) => ({ ...state, loading: true })),
-  on(ExpenseActions.updateExpenseSuccess, (state, { index, expense }) => {
+  on(ExpenseActions.updateExpenseSuccess, (state, { expense }) => {
     // Remove outdated expense item
     const modExpenses: Array<Expense> = state.expenses.filter(
-      (b) => b._id !== expense._id
+      (e) => e.id !== expense.id
     );
     return {
       ...state,
@@ -73,7 +73,7 @@ const reducer = createReducer(
   on(ExpenseActions.removeExpense, (state) => ({ ...state, isLoading: true })),
   on(ExpenseActions.removeExpenseSuccess, (state, { expense }) => ({
     ...state,
-    expenses: state.expenses.filter((b) => b._id !== expense._id),
+    expenses: state.expenses.filter((e) => e.id !== expense.id),
     isLoading: false,
     errorMessage: null,
   })),

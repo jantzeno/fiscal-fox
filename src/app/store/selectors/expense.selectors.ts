@@ -13,5 +13,5 @@ export const getExpenses = createSelector(
 export const getExpenseById = createSelector(
   selectExpenseState,
   ({ expenses }: ExpenseState, props) =>
-    expenses.find((ex) => ex._id === props.expenseId)
+    expenses.find((ex) => ex.id === props.expenseId)
 );

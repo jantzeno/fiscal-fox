@@ -5,7 +5,8 @@ import { AuthState } from '../models/auth-state.model';
 export const initialState: AuthState = {
   isAuth: false,
   isRegistered: false,
-  token: '',
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjAxMjQ2ODAzLCJleHAiOjE2MDEzMzMyMDN9.quhJD8una2miGUaCsMZvqtS9oKeFb-fyzhtjuYVPCT4',
   isLoading: false,
   errorMessage: '',
 };

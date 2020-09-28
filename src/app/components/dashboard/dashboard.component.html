@@ -1,27 +1,42 @@
-<h1>Fiscal-Fox Budget and Expense Tracker</h1>
-<!-- TODO: Option to create budget -->
-<h2>Budget List</h2>
-<div *ngIf="budgets$ | async">
-  <h2 *ngIf="(budgets$ | async).size < 1">There are no budgets to display</h2>
-  <div *ngIf="(budgets$ | async).size > 0">
-    <!-- TODO: Route to Budget Details -->
-    <!-- TODO: Route to  -->
-    <div *ngFor="let budget of budgets$ | async | keyvalue">
-      <h3>{{ budget.value.name }}</h3>
-      <!-- TODO: Update for expenses -->
-      <!-- <div *ngIf="budget.value.expenses.size === 0"> -->
-      <ul>
-        <li>There are no expenses against this budget</li>
-        <!-- <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li> -->
-      </ul>
-      <!-- </div> -->
-      <!-- <div *ngIf="budget.value.expenses.size > 0"> -->
-      <!-- <app-budget-details *ngFor="let expense of budget.expenses.values()" [expense]="expense"></app-budget-details> -->
-      <ul>
-        <!-- <li>Total Expenses: {{ budget.calcExpenseTotal() | currency }}</li> -->
-        <!-- <li>Remaining: {{ budget.calcRemainingBudget() | currency }}</li> -->
-      </ul>
-      <!-- </div> -->
-    </div>
-  </div>
+<app-header></app-header>
+<div class="mx-auto">
+  <h2>Budget List</h2>
+  <table
+    class="table table-striped"
+    *ngIf="budgets$ | async as budgets; else loadingBudgets"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Budget</th>
+        <th scope="col">Amount</th>
+        <th scope="col"># Expenses</th>
+        <th scope="col">Expenses Total</th>
+        <th scope="col">Remaining</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let budget of budgets; let id = index">
+        <th>
+          <a [routerLink]="['/budgets', budget.id]">
+            {{ budget.name }}
+          </a>
+        </th>
+        <th>{{ budget.amount | currency }}</th>
+        <th>{{ logic.countExpenses(budget, expenses$ | async) }}</th>
+        <th>
+          {{
+            logic.calcExpenseTotalForBudget(budget, expenses$ | async)
+              | currency
+          }}
+        </th>
+        <th>
+          {{ logic.calcRemainingBudget(budget, expenses$ | async) | currency }}
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #loadingBudgets>
+    <div>Loading Budgets...</div>
+  </ng-template>
 </div>

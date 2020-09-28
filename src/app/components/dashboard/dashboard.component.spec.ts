@@ -13,8 +13,6 @@ describe('DashboardComponent', () => {
   let mockStore: MockStore;
   let mockGetBudgetsSelector: MemoizedSelector<BudgetState, Array<Budget>>;
 
-  // TODO: Make this better after getting used to Ngrx
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [provideMockStore()],

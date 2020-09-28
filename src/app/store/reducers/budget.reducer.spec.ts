@@ -8,7 +8,7 @@ import { budgetReducer } from './budget.reducer';
 
 describe('Budget Reducer', () => {
   it('should set budgets on `loadBudgets`', () => {
-    const inputBudget = { _id: 1, name: 'IT Refresh', amount: 5000 };
+    const inputBudget = { id: 1, name: 'IT Refresh', amount: 5000 };
     const action = BudgetActions.loadBudgetsSuccess({ budgets: [inputBudget] });
     const expected: BudgetState = {
       ...BUDGET_INITIAL_MOCK_STATE,
@@ -36,9 +36,8 @@ describe('Budget Reducer', () => {
   });
 
   it('should modify a budget on `updateBudget`', () => {
-    const inputBudget = { _id: 1, name: 'Laptop Purchase', amount: 2000 };
+    const inputBudget = { id: 1, name: 'Laptop Purchase', amount: 2000 };
     const action = BudgetActions.updateBudgetSuccess({
-      index: 0,
       budget: inputBudget,
     });
     const expected: BudgetState = {

@@ -1,8 +1,3 @@
-export const enum Role {
-  PROGRAM_MANAGER = 'PROGRAM_MANAGER',
-  BUDGET_ANALYST = 'BUDGET_ANALYST',
-}
-
 export interface RegistrationResponse {
   isRegistered: boolean;
 }
@@ -18,7 +13,7 @@ export interface LogoutResponse {
 
 export interface UserResponse {
   username: string;
-  role: Role;
+  role: string;
   email: string;
 }
 

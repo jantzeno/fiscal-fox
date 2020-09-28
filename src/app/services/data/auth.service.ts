@@ -4,7 +4,6 @@ import {
   AuthResponse,
   RegistrationResponse,
   LogoutResponse,
-  Role,
 } from '../../models/user.model';
 import { Observable } from 'rxjs';
 
@@ -21,7 +20,7 @@ export class AuthService {
     username: string,
     password: string,
     email: string,
-    role: Role
+    role: string
   ): Observable<RegistrationResponse> {
     return this.http.post<RegistrationResponse>(`${AUTH_URL}/register`, {
       username,
@@ -39,7 +38,7 @@ export class AuthService {
     });
   }
 
-  logout(token: string): Observable<LogoutResponse> {
-    return this.http.post<LogoutResponse>(`${AUTH_URL}/logout`, { token });
+  logout(): Observable<LogoutResponse> {
+    return this.http.get<LogoutResponse>(`${AUTH_URL}/logout`);
   }
 }

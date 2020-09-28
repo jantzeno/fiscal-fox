@@ -30,11 +30,11 @@ export const addExpenseFailure = createAction(
 // TODO: Determine if index is needed
 export const updateExpense = createAction(
   '[API] Update Expense',
-  props<{ index: number; expense: Expense }>()
+  props<{ expense: Expense }>()
 );
 export const updateExpenseSuccess = createAction(
   '[API] Update Expense Success',
-  props<{ index: number; expense: Expense }>()
+  props<{ expense: Expense }>()
 );
 export const updateExpenseFailure = createAction(
   '[API] Update Expense Failure',
