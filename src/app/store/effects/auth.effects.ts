@@ -12,19 +12,24 @@ import {
   requestRegistrationSuccess,
 } from '../actions/auth.actions';
 import { AuthService } from '../../services/data/auth.service';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   AuthResponse,
   LogoutResponse,
   RegistrationResponse,
-} from '../../models/user.model';
+} from '../../components/user/store/models/user.model';
 import { ApplicationState } from '../models/application-state.model';
 import { Store } from '@ngrx/store';
-import { getToken } from '../selectors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthEffects {
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private store$: Store<ApplicationState>
+  ) {}
+
   // Register
   register$ = createEffect(() =>
     this.actions$.pipe(
@@ -86,10 +91,4 @@ export class AuthEffects {
       )
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private store$: Store<ApplicationState>
-  ) {}
 }

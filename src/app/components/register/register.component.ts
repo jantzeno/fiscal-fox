@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { User } from 'src/app/models/user.model';
+import { User } from '../user/store/models/user.model';
 import { ApplicationState } from 'src/app/store/models/application-state.model';
 import { getIsRegistered, go, requestRegistration } from '../../store';
 import { Observable } from 'rxjs';

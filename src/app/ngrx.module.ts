@@ -6,11 +6,11 @@ import { EffectsModule } from '@ngrx/effects';
 import {
   appState,
   AuthEffects,
-  BudgetEffects,
-  ExpenseEffects,
   RouterEffects,
   CustomSerializer,
 } from './store';
+import { BudgetEffects } from './components/budget/store';
+import { ExpenseEffects } from './components/expense/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({

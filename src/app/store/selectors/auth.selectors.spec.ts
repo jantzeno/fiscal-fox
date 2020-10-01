@@ -1,5 +1,5 @@
 import { getIsAuth, getIsRegistered, getToken } from './auth.selectors';
-import { AUTH_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
+import { AUTH_INITIAL_MOCK_STATE } from '../models/auth-mock-state';
 
 const state = AUTH_INITIAL_MOCK_STATE;
 

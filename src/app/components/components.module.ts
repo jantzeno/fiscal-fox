@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserDetailsComponent } from './user/details/details.component';
 
 const components = [
   DashboardComponent,
@@ -28,6 +29,7 @@ const components = [
   LoginComponent,
   PageNotFoundComponent,
   RegisterComponent,
+  UserDetailsComponent,
 ];
 
 @NgModule({

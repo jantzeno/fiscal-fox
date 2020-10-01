@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Budget } from 'src/app/models/budget.model';
-import { Expense } from '../../models/expense.model';
+import { Budget } from '../../components/budget/store/models/budget.model';
+import { Expense } from '../../components/expense/store/models/expense.model';
 
 @Injectable({
   providedIn: 'root',

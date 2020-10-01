@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BudgetResponse, AllBudgetsResponse } from '../../models/budget.model';
+import {
+  BudgetResponse,
+  AllBudgetsResponse,
+} from '../../components/budget/store/models/budget.model';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000/api';
@@ -12,7 +15,7 @@ const BUDGET_URL = `${BASE_URL}/budgets`;
 export class BudgetService {
   constructor(private http: HttpClient) {}
 
-  getAllBudgets(): Observable<AllBudgetsResponse> {
+  getBudgets(): Observable<AllBudgetsResponse> {
     return this.http.get<AllBudgetsResponse>(`${BUDGET_URL}/`);
   }
 

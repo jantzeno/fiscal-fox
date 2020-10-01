@@ -3,5 +3,4 @@ export interface AuthState {
   readonly isRegistered: boolean;
   readonly token: string;
   readonly isLoading: boolean;
-  readonly errorMessage: string;
 }

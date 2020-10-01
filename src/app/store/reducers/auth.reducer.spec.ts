@@ -10,7 +10,7 @@ import {
   requestRegistrationSuccess,
   requestRegistrationFailure,
 } from '../actions/auth.actions';
-import { AUTH_INITIAL_MOCK_STATE } from '../models/initial-mock-state';
+import { AUTH_INITIAL_MOCK_STATE } from '../models/auth-mock-state';
 import { authReducer } from './auth.reducer';
 
 describe('Auth Reducer', () => {
@@ -40,7 +40,6 @@ describe('Auth Reducer', () => {
     const action = requestLoginFailure({ error: 'error' });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      errorMessage: 'error',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
@@ -71,7 +70,6 @@ describe('Auth Reducer', () => {
     const action = requestLogoutFailure({ error: 'error' });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      errorMessage: 'error',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
@@ -109,7 +107,6 @@ describe('Auth Reducer', () => {
     const action = requestRegistrationFailure({ error: 'error' });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      errorMessage: 'error',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);

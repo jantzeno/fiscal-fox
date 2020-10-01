@@ -4,7 +4,7 @@ import {
   AuthResponse,
   RegistrationResponse,
   LogoutResponse,
-} from '../../models/user.model';
+} from '../../components/user/store/models/user.model';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000/api';

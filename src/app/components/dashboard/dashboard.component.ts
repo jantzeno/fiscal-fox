@@ -1,14 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Budget } from 'src/app/models/budget.model';
-import { Expense } from 'src/app/models/expense.model';
-import {
-  loadBudgets,
-  loadExpenses,
-  getBudgets,
-  getExpenses,
-} from 'src/app/store';
+import { Budget } from 'src/app/components/budget/store/models/budget.model';
+import { Expense } from 'src/app/components/expense/store/models/expense.model';
+import { loadBudgets, getBudgets } from '../budget/store';
+import { loadExpenses, getExpenses } from '../expense/store';
 import { ApplicationState } from '../../store/models/application-state.model';
 import { LogicService } from '../../services/business/logic.service';
 

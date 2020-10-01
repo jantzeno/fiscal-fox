@@ -1,15 +1,19 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { ApplicationState } from '../models/application-state.model';
 import { authReducer } from './auth.reducer';
-import { budgetReducer } from './budget.reducer';
-import { expenseReducer } from './expense.reducer';
-import { userReducer } from './user.reducer';
 import { routerReducer } from '@ngrx/router-store';
+import { budgetReducer } from '../../components/budget/store/reducers/budget.reducer';
+import { budgetsReducer } from '../../components/budget/store/reducers/budgets.reducer';
+import { expenseReducer } from '../../components/expense/store/reducers/expense.reducer';
+import { expensesReducer } from '../../components/expense/store/reducers/expenses.reducer';
+import { userReducer } from '../../components/user/store/reducers/user.reducer';
 
 export const appState: ActionReducerMap<ApplicationState> = {
   router: routerReducer,
   authState: authReducer,
-  budgetState: budgetReducer,
-  expenseState: expenseReducer,
+  budgetsState: budgetsReducer,
+  selectedBudget: budgetReducer,
+  expensesState: expensesReducer,
+  selectedExpense: expenseReducer,
   userState: userReducer,
 };

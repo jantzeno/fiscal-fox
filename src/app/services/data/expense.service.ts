@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   ExpenseResponse,
   AllExpensesResponse,
-} from '../../models/expense.model';
+} from '../../components/expense/store/models/expense.model';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000/api';
@@ -23,13 +23,13 @@ export class ExpenseService {
     return this.http.get<ExpenseResponse>(`${EXPENSE_URL}/${id}`);
   }
 
-  createExpense(name: String, amount: number): Observable<ExpenseResponse> {
+  createExpense(name: string, amount: number): Observable<ExpenseResponse> {
     return this.http.post<ExpenseResponse>(`${EXPENSE_URL}/`, { name, amount });
   }
 
   updateExpense(
     id: number,
-    name: String,
+    name: string,
     amount: number
   ): Observable<ExpenseResponse> {
     return this.http.put<ExpenseResponse>(`${EXPENSE_URL}/${id}`, {

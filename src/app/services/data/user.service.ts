@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserResponse } from '../../models/user.model';
+import { UserResponse } from '../../components/user/store/models/user.model';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000/api';

@@ -1,4 +1,4 @@
 <ng-container *ngIf="budget$ | async as budget">
   <h2>{{ budget.name }}</h2>
-  <div>{{ budget.amount }}</div>
+  <div>{{ budget.amount | currency }}</div>
 </ng-container>

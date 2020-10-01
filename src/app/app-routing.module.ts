@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { AuthGuard } from './auth.guard';
-import { BudgetGuard } from './components/budget/details/budget.guard';
+import { BudgetGuard } from './components/budget/budget.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { BudgetDetailsComponent } from './components/budget/details/details.component';
 
@@ -14,12 +14,12 @@ const routes: Routes = [
   {
     path: 'budgets/:budgetId',
     component: BudgetDetailsComponent,
-    canActivate: [BudgetGuard],
+    canActivate: [AuthGuard, BudgetGuard],
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
   {

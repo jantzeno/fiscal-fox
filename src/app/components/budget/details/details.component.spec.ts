@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MemoizedSelector } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { Budget } from 'src/app/models/budget.model';
-import { getBudgets } from 'src/app/store';
-import { BudgetState } from 'src/app/store/models/budget-state.model';
+import { Budget } from 'src/app/components/budget/store/models/budget.model';
+import { getBudgets } from '../store';
+import { BudgetState } from 'src/app/components/budget/store/models/budget-state.model';
 
 import { BudgetDetailsComponent } from './details.component';
 

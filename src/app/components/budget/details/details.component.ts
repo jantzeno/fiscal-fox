@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Budget } from 'src/app/models/budget.model';
-import { Expense } from 'src/app/models/expense.model';
+import { Budget } from 'src/app/components/budget/store/models/budget.model';
+import { Expense } from 'src/app/components/expense/store/models/expense.model';
 import { ApplicationState } from '../../../store/models/application-state.model';
 import { LogicService } from '../../../services/business/logic.service';
+import { getSelectedBudget, getSelectedBudgetId } from '../store';
 
 @Component({
   selector: 'app-budget-details',
@@ -21,5 +22,7 @@ export class BudgetDetailsComponent implements OnInit {
     public logic: LogicService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.budget$ = this.store.select(getSelectedBudgetId);
+  }
 }

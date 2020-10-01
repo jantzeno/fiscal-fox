@@ -19,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
       flatMap((token) => {
         const authReq = !!token
           ? req.clone({
-              setHeaders: { Authorization: 'Bearer ' + token },
+              setHeaders: { Authorization: `Bearer ${token}` },
             })
           : req;
         return next.handle(authReq);
