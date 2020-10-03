@@ -9,8 +9,9 @@ import {
   RouterEffects,
   CustomSerializer,
 } from './store';
-import { BudgetEffects } from './components/budget/store';
-import { ExpenseEffects } from './components/expense/store';
+import { BudgetEffects } from './components/budgets/store';
+import { ExpenseEffects } from './components/expenses/store';
+import { UserEffects } from './components/user/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       BudgetEffects,
       ExpenseEffects,
       RouterEffects,
+      UserEffects,
     ]),
   ],
 })

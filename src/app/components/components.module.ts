@@ -4,32 +4,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { BudgetsModule } from './budgets/budgets.module';
+import { ExpensesModule } from './expenses/expenses.module';
+import { UserModule } from './user/user.module';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { BudgetAddComponent } from './budget/add/add.component';
-import { BudgetDetailsComponent } from './budget/details/details.component';
-import { BudgetEditComponent } from './budget/edit/edit.component';
-import { ExpenseAddComponent } from './expense/add/add.component';
-import { ExpenseDetailsComponent } from './expense/details/details.component';
-import { ExpenseEditComponent } from './expense/edit/edit.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UserDetailsComponent } from './user/details/details.component';
 
 const components = [
   DashboardComponent,
-  BudgetAddComponent,
-  BudgetDetailsComponent,
-  BudgetEditComponent,
-  ExpenseAddComponent,
-  ExpenseDetailsComponent,
-  ExpenseEditComponent,
   HeaderComponent,
   LoginComponent,
   PageNotFoundComponent,
   RegisterComponent,
-  UserDetailsComponent,
 ];
 
 @NgModule({
@@ -40,6 +30,9 @@ const components = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    BudgetsModule,
+    ExpensesModule,
+    UserModule,
   ],
   exports: [...components],
 })

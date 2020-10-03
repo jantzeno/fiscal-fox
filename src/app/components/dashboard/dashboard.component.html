@@ -1,6 +1,9 @@
 <app-header></app-header>
 <div class="mx-auto">
   <h2>Budget List</h2>
+  <div>
+    <a [routerLink]="['/budgets/new']"> New Budget </a>
+  </div>
   <table
     class="table table-striped"
     *ngIf="budgets$ | async as budgets; else loadingBudgets"
@@ -8,6 +11,7 @@
     <thead>
       <tr>
         <th scope="col">Budget</th>
+        <th scope="col"><!-- Edit --></th>
         <th scope="col">Amount</th>
         <th scope="col"># Expenses</th>
         <th scope="col">Expenses Total</th>
@@ -17,20 +21,24 @@
     <tbody>
       <tr *ngFor="let budget of budgets; let id = index">
         <th>
-          <a [routerLink]="['/budgets', budget.id]">
+          <a [routerLink]="['/budgets/details', budget.id]">
             {{ budget.name }}
           </a>
         </th>
-        <th>{{ budget.amount | currency }}</th>
-        <th>{{ logic.countExpenses(budget, expenses$ | async) }}</th>
         <th>
-          {{
-            logic.calcExpenseTotalForBudget(budget, expenses$ | async)
-              | currency
-          }}
+          <a [routerLink]="['/budgets/edit', budget.id]"> Edit </a>
         </th>
+        <th>{{ budget.amount | currency }}</th>
+        <th>{{ getExpenseCount(budget, expenses$ | async) }}</th>
         <th>
-          {{ logic.calcRemainingBudget(budget, expenses$ | async) | currency }}
+          {{ getExpenseTotalForBudget(budget, expenses$ | async) | currency }}
+        </th>
+        <th
+          [ngClass]="{
+            deficit: isDeficit(getRemainingBudget(budget, expenses$ | async))
+          }"
+        >
+          {{ getRemainingBudget(budget, expenses$ | async) | currency }}
         </th>
       </tr>
     </tbody>

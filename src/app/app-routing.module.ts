@@ -6,22 +6,42 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { AuthGuard } from './auth.guard';
-import { BudgetGuard } from './components/budget/budget.guard';
 import { RegisterComponent } from './components/register/register.component';
-import { BudgetDetailsComponent } from './components/budget/details/details.component';
 
 const routes: Routes = [
-  {
-    path: 'budgets/:budgetId',
-    component: BudgetDetailsComponent,
-    canActivate: [AuthGuard, BudgetGuard],
-  },
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
+  // Budgets
+  {
+    path: 'budgets',
+    loadChildren: () =>
+      import('./components/budgets/budgets.module').then(
+        (m) => m.BudgetsModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  // Expenses
+  {
+    path: 'expenses',
+    loadChildren: () =>
+      import('./components/expenses/expenses.module').then(
+        (m) => m.ExpensesModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  // User
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./components/user/user.module').then((m) => m.UserModule),
+    canActivate: [AuthGuard],
+  },
+  // Login
   { path: 'login', component: LoginComponent },
+  // Register
   {
     path: 'register',
     component: RegisterComponent,

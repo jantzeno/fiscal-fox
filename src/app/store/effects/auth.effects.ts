@@ -5,7 +5,6 @@ import {
   requestLoginFailure,
   requestLoginSuccess,
   requestLogout,
-  requestLogoutFailure,
   requestLogoutSuccess,
   requestRegistration,
   requestRegistrationFailure,
@@ -14,33 +13,21 @@ import {
   requestTokenCheckFailure,
   requestTokenCheckSuccess,
 } from '../actions/auth.actions';
-import { AuthService } from '../../services/data/auth.service';
-import {
-  catchError,
-  map,
-  switchMap,
-  tap,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { AuthService } from '../../services/http/auth.service';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   AuthResponse,
-  LogoutResponse,
   RegistrationResponse,
-} from '../../components/user/store/models/user.model';
+} from '../../services/http/models/auth-response.model';
 import { Router } from '@angular/router';
-import { selectAuthState } from '../selectors';
-import { routeChange } from '../actions/router.actions';
-import { ApplicationState } from '../models/application-state.model';
-import { Store } from '@ngrx/store';
 
 @Injectable({ providedIn: 'root' })
 export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router,
-    private store: Store<ApplicationState>
+    private router: Router
   ) {}
 
   // Register
@@ -94,7 +81,7 @@ export class AuthEffects {
         ofType(requestLoginSuccess),
         tap(({ token }) => {
           localStorage.setItem('token', token);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/dashboard');
         })
       ),
     { dispatch: false }

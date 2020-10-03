@@ -1,12 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Budget } from 'src/app/components/budget/store/models/budget.model';
-import { Expense } from 'src/app/components/expense/store/models/expense.model';
-import { loadBudgets, getBudgets } from '../budget/store';
-import { loadExpenses, getExpenses } from '../expense/store';
-import { ApplicationState } from '../../store/models/application-state.model';
-import { LogicService } from '../../services/business/logic.service';
+import { Budget } from 'src/app/components/budgets/store/models/budget.model';
+import { Expense } from 'src/app/components/expenses/store/models/expense.model';
+import { DashboardFacade } from './dashboard.facade';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,19 +14,32 @@ export class DashboardComponent implements OnInit {
   budgets$: Observable<Budget[]>;
   expenses$: Observable<Expense[]>;
 
-  constructor(
-    private store: Store<ApplicationState>,
-    public logic: LogicService
-  ) {}
+  constructor(private dashboardFacade: DashboardFacade) {}
 
   ngOnInit(): void {
-    this.budgets$ = this.store.pipe(select(getBudgets));
-    this.expenses$ = this.store.pipe(select(getExpenses));
-    this.store.dispatch(loadBudgets());
-    this.store.dispatch(loadExpenses());
+    this.budgets$ = this.dashboardFacade.budgets$;
+    this.expenses$ = this.dashboardFacade.expenses$;
+    this.dashboardFacade.loadBudgets();
+    this.dashboardFacade.loadExpenses();
   }
 
-  // getExpenseCount(budget: Budget, expenses: Expense[]): number {
-  //   return this.logic.countExpenses(budget, expenses);
-  // }
+  getExpenseCount(budget: Budget, expenses: Expense[]): number {
+    return this.dashboardFacade.countExpenses(budget, expenses);
+  }
+
+  getExpenseTotal(expenses: Expense[]): number {
+    return this.dashboardFacade.calcExpenseTotal(expenses);
+  }
+
+  getExpenseTotalForBudget(budget: Budget, expenses: Expense[]): number {
+    return this.dashboardFacade.calcExpenseTotalForBudget(budget, expenses);
+  }
+
+  getRemainingBudget(budget: Budget, expenses: Expense[]): number {
+    return this.dashboardFacade.calcRemainingBudget(budget, expenses);
+  }
+
+  isDeficit(amount): boolean {
+    return this.dashboardFacade.isDeficit(amount);
+  }
 }

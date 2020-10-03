@@ -11,7 +11,10 @@ export const loadUserFailure = createAction(
   props<{ error: any }>()
 );
 
-export const updateUser = createAction('[User] Update User');
+export const updateUser = createAction(
+  '[User] Update User',
+  props<{ user: User }>()
+);
 export const updateUserSuccess = createAction(
   '[API] Update User Success',
   props<{ user: User }>()
