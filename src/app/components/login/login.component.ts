@@ -31,13 +31,5 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const { username, password } = this.loginForm.value;
     this.store.dispatch(requestLogin({ username, password }));
-
-    if (this.store.select(getIsAuth)) {
-      this.store.dispatch(go({ path: ['dashboard'] }));
-    }
-  }
-
-  onRegister() {
-    // this.store.dispatch(go({ path: ['register'] }));
   }
 }

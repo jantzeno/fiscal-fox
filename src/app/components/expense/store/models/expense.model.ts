@@ -1,4 +1,4 @@
-export interface AllExpensesResponse {
+export interface ExpensesResponse {
   expenses: Expense[];
 }
 

@@ -11,9 +11,15 @@ import { ApplicationState } from './store/models/application-state.model';
 import { getIsAuth } from './store/selectors';
 import { catchError, switchMap, filter, first, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { requestTokenCheck } from './store';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
+  // Get Token form localStorage
+  get token(): string {
+    return localStorage.getItem('token');
+  }
+
   constructor(private store: Store<ApplicationState>, private router: Router) {}
 
   canActivate(
@@ -23,7 +29,11 @@ export class AuthGuard implements CanActivate {
     return this.store.select(getIsAuth).pipe(
       tap((isAuth: boolean) => {
         if (!isAuth) {
-          this.router.navigate(['login']);
+          if (this.token) {
+            this.store.dispatch(requestTokenCheck({ token: this.token }));
+          } else {
+            this.router.navigate(['login']);
+          }
         }
       }),
       filter((isAuth: boolean) => isAuth),

@@ -15,7 +15,7 @@ export const requestRegistrationFailure = createAction(
   props<{ error: any }>()
 );
 
-// Login existing User
+// Login User
 export const requestLogin = createAction(
   '[API] Request Login',
   props<{ username: string; password: string }>()
@@ -26,6 +26,19 @@ export const requestLoginSuccess = createAction(
 );
 export const requestLoginFailure = createAction(
   '[API] Request Login Failure',
+  props<{ error: any }>()
+);
+
+// Validate User Token
+export const requestTokenCheck = createAction(
+  '[API] Request Token Check',
+  props<{ token: string }>()
+);
+export const requestTokenCheckSuccess = createAction(
+  '[API] Request Token Check Success'
+);
+export const requestTokenCheckFailure = createAction(
+  '[API] Request Token Check Failure',
   props<{ error: any }>()
 );
 
@@ -47,6 +60,9 @@ const authActions = union({
   requestLogin,
   requestLoginSuccess,
   requestLoginFailure,
+  requestTokenCheck,
+  requestTokenCheckSuccess,
+  requestTokenCheckFailure,
   requestLogout,
   requestLogoutSuccess,
   requestLogoutFailure,

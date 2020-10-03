@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   BudgetResponse,
-  AllBudgetsResponse,
+  BudgetsResponse,
 } from '../../components/budget/store/models/budget.model';
 import { Observable } from 'rxjs';
 
@@ -15,8 +15,8 @@ const BUDGET_URL = `${BASE_URL}/budgets`;
 export class BudgetService {
   constructor(private http: HttpClient) {}
 
-  getBudgets(): Observable<AllBudgetsResponse> {
-    return this.http.get<AllBudgetsResponse>(`${BUDGET_URL}/`);
+  getBudgets(): Observable<BudgetsResponse> {
+    return this.http.get<BudgetsResponse>(`${BUDGET_URL}/`);
   }
 
   getBudget(id: number): Observable<BudgetResponse> {

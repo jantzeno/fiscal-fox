@@ -31,11 +31,14 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<AuthResponse> {
-    console.log('Called Login');
     return this.http.post<AuthResponse>(`${AUTH_URL}/login`, {
       username,
       password,
     });
+  }
+
+  validateToken(): Observable<AuthResponse> {
+    return this.http.get<AuthResponse>(`${AUTH_URL}/login`);
   }
 
   logout(): Observable<LogoutResponse> {

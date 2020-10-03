@@ -68,14 +68,5 @@ export class RegisterComponent implements OnInit {
 
     console.log(inputUser);
     this.store.dispatch(requestRegistration({ user: inputUser, password }));
-
-    if (this.store.select(getIsRegistered)) {
-      this.store.dispatch(go({ path: ['login'] }));
-    }
-  }
-
-  // Cancel and return to Login page
-  onCancel() {
-    // this.store.dispatch(go({ path: ['login'] }));
   }
 }

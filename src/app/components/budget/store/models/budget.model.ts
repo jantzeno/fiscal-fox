@@ -1,4 +1,4 @@
-export interface AllBudgetsResponse {
+export interface BudgetsResponse {
   budgets: Budget[];
 }
 
