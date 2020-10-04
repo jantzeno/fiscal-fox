@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { BudgetDetailsComponent } from './details.component';
@@ -7,7 +8,6 @@ describe('DetailsComponent', () => {
   let component: BudgetDetailsComponent;
   let fixture: ComponentFixture<BudgetDetailsComponent>;
   let mockStore: MockStore;
-  // let mockGetBudgetsSelector: MemoizedSelector<BudgetState, Array<Budget>>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,10 +17,24 @@ describe('DetailsComponent', () => {
   }));
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          // https://www.joshuacolvin.net/mocking-activated-route-data-in-angular/
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              params: {
+                get: () => 1, // represents the budgetId
+              },
+            },
+          },
+        },
+      ],
+    });
     fixture = TestBed.createComponent(BudgetDetailsComponent);
     mockStore = TestBed.inject(MockStore);
     component = fixture.componentInstance;
-    // mockGetBudgetsSelector = mockStore.overrideSelector(getBudgets, null);
     fixture.detectChanges();
   });
 

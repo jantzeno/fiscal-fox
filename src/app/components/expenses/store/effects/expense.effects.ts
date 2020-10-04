@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import * as ExpenseActions from '../actions/expense.actions';
 import { ExpenseService } from '../../../../services/http/expense.service';
 import {
   ExpenseResponse,
   ExpensesResponse,
 } from '../../../../services/http/models/expenses-response.model';
-import { selectedExpenseState } from '../selectors';
-import { ExpenseState } from '../models/expense-state.model';
-import { ApplicationState } from 'src/app/store/models/application-state.model';
-import { loadExpenseRoute$ } from 'src/app/store/router-helpers';
-import { routeChange } from 'src/app/store';
 
 @Injectable({ providedIn: 'root' })
 export class ExpenseEffects {
@@ -22,7 +16,7 @@ export class ExpenseEffects {
     this.actions$.pipe(
       ofType(ExpenseActions.loadExpenses),
       switchMap(() =>
-        this.expenseService.getAllExpenses().pipe(
+        this.expenseService.getExpenses().pipe(
           map(({ expenses }: ExpensesResponse) =>
             ExpenseActions.loadExpensesSuccess({ expenses })
           ),
@@ -104,7 +98,6 @@ export class ExpenseEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<ApplicationState>,
     private expenseService: ExpenseService
   ) {}
 }

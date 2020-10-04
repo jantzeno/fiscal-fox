@@ -1,18 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  requestLogin,
-  requestLoginFailure,
-  requestLoginSuccess,
-  requestLogout,
-  requestLogoutSuccess,
-  requestRegistration,
-  requestRegistrationFailure,
-  requestRegistrationSuccess,
-  requestTokenCheck,
-  requestTokenCheckFailure,
-  requestTokenCheckSuccess,
-} from '../actions/auth.actions';
+import * as AuthActions from '../actions/auth.actions';
 import { AuthService } from '../../services/http/auth.service';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -33,15 +21,17 @@ export class AuthEffects {
   // Register
   register$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(requestRegistration),
+      ofType(AuthActions.requestRegistration),
       switchMap(({ user, password }) =>
         this.authService
           .register(user.username, password, user.email, user.role)
           .pipe(
             map(({ isRegistered }: RegistrationResponse) =>
-              requestRegistrationSuccess({ isRegistered })
+              AuthActions.requestRegistrationSuccess({ isRegistered })
             ),
-            catchError((error) => of(requestRegistrationFailure({ error })))
+            catchError((error) =>
+              of(AuthActions.requestRegistrationFailure({ error }))
+            )
           )
       )
     )
@@ -51,7 +41,7 @@ export class AuthEffects {
   registerSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(requestRegistrationSuccess),
+        ofType(AuthActions.requestRegistrationSuccess),
         tap(({ isRegistered }) => {
           if (isRegistered) {
             this.router.navigateByUrl('/login');
@@ -64,11 +54,13 @@ export class AuthEffects {
   // Login
   login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(requestLogin),
+      ofType(AuthActions.requestLogin),
       switchMap(({ username, password }) =>
         this.authService.login(username, password).pipe(
-          map(({ token }: AuthResponse) => requestLoginSuccess({ token })),
-          catchError((error) => of(requestLoginFailure({ error })))
+          map(({ token }: AuthResponse) =>
+            AuthActions.requestLoginSuccess({ token })
+          ),
+          catchError((error) => of(AuthActions.requestLoginFailure({ error })))
         )
       )
     )
@@ -78,7 +70,7 @@ export class AuthEffects {
   loginSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(requestLoginSuccess),
+        ofType(AuthActions.requestLoginSuccess),
         tap(({ token }) => {
           localStorage.setItem('token', token);
           this.router.navigateByUrl('/dashboard');
@@ -90,11 +82,13 @@ export class AuthEffects {
   // Validate Token
   validateToken$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(requestTokenCheck),
+      ofType(AuthActions.requestTokenCheck),
       switchMap(() =>
         this.authService.validateToken().pipe(
-          map(() => requestTokenCheckSuccess()),
-          catchError((error) => of(requestTokenCheckFailure({ error })))
+          map(() => AuthActions.requestTokenCheckSuccess()),
+          catchError((error) =>
+            of(AuthActions.requestTokenCheckFailure({ error }))
+          )
         )
       )
     )
@@ -103,11 +97,11 @@ export class AuthEffects {
   // Logout
   logout$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(requestLogout),
+      ofType(AuthActions.requestLogout),
       switchMap(() =>
         this.authService.logout().pipe(
-          map(({ isAuth }) => requestLogoutSuccess({ isAuth })),
-          catchError((error) => of(requestLoginFailure({ error })))
+          map(({ isAuth }) => AuthActions.requestLogoutSuccess({ isAuth })),
+          catchError((error) => of(AuthActions.requestLogoutFailure({ error })))
         )
       )
     )
@@ -117,7 +111,7 @@ export class AuthEffects {
   logoutSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(requestLogoutSuccess),
+        ofType(AuthActions.requestLogoutSuccess),
         tap(({ isAuth }) => {
           if (!isAuth) {
             localStorage.setItem('token', '');

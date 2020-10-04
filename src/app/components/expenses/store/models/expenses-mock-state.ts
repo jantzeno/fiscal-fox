@@ -1,8 +1,8 @@
-import { EXPENSE_INITIAL_MOCK_STATE } from './expense-mock-state';
+import { MOCK_EXPENSE } from './expense-mock-state';
 import { ExpensesState } from './expenses-state.model';
 
 export const EXPENSES_INITIAL_MOCK_STATE: ExpensesState = {
-  expenses: [EXPENSE_INITIAL_MOCK_STATE.expense],
+  expenses: [MOCK_EXPENSE],
   isLoading: false,
   isLoaded: false,
 };

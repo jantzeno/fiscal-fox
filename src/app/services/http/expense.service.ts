@@ -15,7 +15,7 @@ const EXPENSE_URL = `${BASE_URL}/expenses`;
 export class ExpenseService {
   constructor(private http: HttpClient) {}
 
-  getAllExpenses(): Observable<ExpensesResponse> {
+  getExpenses(): Observable<ExpensesResponse> {
     return this.http.get<ExpensesResponse>(`${EXPENSE_URL}/`);
   }
 
@@ -38,7 +38,7 @@ export class ExpenseService {
     });
   }
 
-  deleteExpense(id: number): Observable<ExpenseResponse> {
-    return this.http.delete<ExpenseResponse>(`${EXPENSE_URL}/${id}`);
+  deleteExpense(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${EXPENSE_URL}/${id}`);
   }
 }

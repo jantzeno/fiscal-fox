@@ -66,7 +66,7 @@ export class DashboardFacade {
 
   isDeficit(amount: Number): boolean {
     let deficit = false;
-    if (amount < 0) {
+    if (amount <= 0) {
       deficit = true;
     }
     return deficit;

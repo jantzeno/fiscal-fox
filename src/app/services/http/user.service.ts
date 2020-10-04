@@ -34,7 +34,7 @@ export class UserService {
     });
   }
 
-  deleteUser(): Observable<UserResponse> {
-    return this.http.delete<UserResponse>(`${USER_URL}/`);
+  deleteUser(): Observable<boolean> {
+    return this.http.delete<boolean>(`${USER_URL}/`);
   }
 }

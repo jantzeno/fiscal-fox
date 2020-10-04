@@ -16,13 +16,13 @@ const reducer = createReducer(
     ...state,
     user,
     isLoading: false,
-    errorMessage: null,
+    isLoaded: true,
   })),
   on(UserActions.loadUserFailure, (state, { error }) => ({
     ...state,
     user: null,
     isLoading: false,
-    errorMessage: error,
+    isLoaded: false,
   })),
   // Update User
   on(UserActions.updateUser, (state) => ({ ...state, isLoading: true })),
@@ -30,13 +30,13 @@ const reducer = createReducer(
     ...state,
     user,
     isLoading: false,
-    errorMessage: null,
+    isLoaded: true,
   })),
   on(UserActions.updateUserFailure, (state, { error }) => ({
     ...state,
     user: null,
     isLoading: false,
-    errorMessage: error,
+    isLoaded: false,
   }))
 );
 

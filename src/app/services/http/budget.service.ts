@@ -41,7 +41,7 @@ export class BudgetService {
     });
   }
 
-  deleteBudget(id: number): Observable<BudgetResponse> {
-    return this.http.delete<BudgetResponse>(`${BUDGET_URL}/${id}`);
+  deleteBudget(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${BUDGET_URL}/${id}`);
   }
 }

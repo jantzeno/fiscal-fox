@@ -60,7 +60,7 @@ describe('Auth Reducer', () => {
     const action = requestLogoutSuccess({ isAuth: false });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,
-      token: '',
+      token: 'invalid',
     };
     const actual = authReducer(AUTH_INITIAL_MOCK_STATE, action);
     expect(actual).toEqual(expected);
@@ -93,7 +93,7 @@ describe('Auth Reducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should set the token and isAuth on `requestRegistrationSuccess`', () => {
+  it('should set the token and isRegistered on `requestRegistrationSuccess`', () => {
     const action = requestRegistrationSuccess({ isRegistered: true });
     const expected: AuthState = {
       ...AUTH_INITIAL_MOCK_STATE,

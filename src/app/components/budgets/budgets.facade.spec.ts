@@ -4,17 +4,17 @@ import { loadBudgets } from './store';
 import { loadExpenses } from '../expenses/store';
 
 describe('BudgetesFacade', () => {
-  let budgetesFacade: BudgetsFacade;
+  let budgetsFacade: BudgetsFacade;
 
   beforeEach(() => {
-    budgetesFacade = new BudgetsFacade(MOCK_STORE$);
+    budgetsFacade = new BudgetsFacade(MOCK_STORE$);
   });
 
   describe('#loadBudgets method', () => {
     it('should load budgets', () => {
       const dispatchSpy = spyOn(MOCK_STORE$, 'dispatch');
       const action = loadBudgets();
-      budgetesFacade.loadBudgets();
+      budgetsFacade.loadBudgets();
       expect(dispatchSpy).toHaveBeenCalledWith(action);
     });
   });
@@ -23,7 +23,7 @@ describe('BudgetesFacade', () => {
     it('should load budgets', () => {
       const dispatchSpy = spyOn(MOCK_STORE$, 'dispatch');
       const action = loadExpenses();
-      budgetesFacade.loadExpenses();
+      budgetsFacade.loadExpenses();
       expect(dispatchSpy).toHaveBeenCalledWith(action);
     });
   });

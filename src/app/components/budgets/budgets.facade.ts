@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 
 import { ApplicationState } from '../../store/models/application-state.model';
 import { Budget } from './store/models/budget.model';
@@ -22,10 +21,7 @@ export class BudgetsFacade {
     getSelectedBudget
   );
 
-  constructor(
-    private store: Store<ApplicationState>,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private store: Store<ApplicationState>) {}
 
   loadBudgets(): void {
     this.store.dispatch(loadBudgets());
