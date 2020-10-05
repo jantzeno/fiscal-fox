@@ -94,6 +94,18 @@ export class AuthEffects {
     )
   );
 
+  // Validate Token Side Effect
+  validateTokenFailure$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.requestTokenCheckFailure),
+        tap(({ error }) => {
+          this.router.navigateByUrl('/login');
+        })
+      ),
+    { dispatch: false }
+  );
+
   // Logout
   logout$ = createEffect(() =>
     this.actions$.pipe(
