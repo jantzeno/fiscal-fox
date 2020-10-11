@@ -1,1 +1,76 @@
-<p>edit works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <div class="text-center"><h2>Edit Budget</h2></div>
+  <form class="budget-form" [formGroup]="budgetForm">
+    <div class="form-group">
+      <label for="name">Budget Name</label>
+      <input
+        id="name"
+        class="form-control"
+        type="text"
+        formControlName="name"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('name')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('name').required">Name is required.</div>
+      <div *ngIf="getErrors('name').minlength">
+        Budget name must be at least 4 characters long.
+      </div>
+      <div *ngIf="getErrors('name').pattern">
+        Budget Name Examples: <br />
+        budget <br />
+        new-budget <br />
+        new_budget <br />
+      </div>
+    </ngb-alert>
+    <div class="form-group">
+      <label for="amount">Budget Amount</label>
+      <input
+        id="amount"
+        class="form-control"
+        type="number"
+        pattern="[0-9]*"
+        min="0"
+        formControlName="amount"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('amount')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('amount').required">Budget amount is required.</div>
+      <div *ngIf="getErrors('amount').pattern">
+        Budget amount must be a number.
+      </div>
+    </ngb-alert>
+    <div class="mt-4">
+      <button
+        type="submit"
+        class="btn btn-block btn-primary"
+        (click)="onSubmitUpdate()"
+      >
+        Update Budget
+      </button>
+    </div>
+    <div class="mt-4">
+      <a class="btn btn-block btn-warning" [routerLink]="['/dashboard']">
+        Cancel
+      </a>
+    </div>
+    <div class="mt-4">
+      <button
+        type="submit"
+        class="btn btn-block btn-danger"
+        (click)="onSubmitDelete()"
+      >
+        Delete Budget
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
-import { User } from '../user/store/models/user.model';
-import { ApplicationState } from 'src/app/store/models/application-state.model';
-import { getIsRegistered, go, requestRegistration } from '../../store';
+import { select } from '@ngrx/store';
+import { User } from '../../user/store/models/user.model';
+import { getIsRegistered } from '../store';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { FormHelper } from '../../helpers/form-helper';
+import { AuthFacade } from '../auth.facade';
 
 @Component({
   selector: 'app-register',
@@ -15,13 +15,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  isRegistered$: Observable<boolean>;
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store<ApplicationState>,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -32,29 +27,23 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(6),
           // Start and end with a letter or number
           // Characters can be seperated by one underscore, hyphen, or period
-          Validators.pattern('^[a-zA-Z0-9]+(?:[-_.]?[a-zA-Z0-9])*$'),
+          Validators.pattern(FormHelper.usernamePattern),
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', [Validators.required, Validators.email]],
       role: ['', [Validators.required]],
     });
-
-    this.isRegistered$ = this.store.pipe(select(getIsRegistered));
   }
 
   // Validate Input
   checkValidInput(fieldName): boolean {
-    return (
-      this.registerForm.controls[fieldName].invalid &&
-      (this.registerForm.controls[fieldName].dirty ||
-        this.registerForm.controls[fieldName].touched)
-    );
+    return FormHelper.checkValidInput(this.registerForm, fieldName);
   }
 
   // Get form field errors
   getErrors(fieldName) {
-    return this.registerForm.controls[fieldName].errors;
+    return FormHelper.getErrors(this.registerForm, fieldName);
   }
 
   // Submit Registration Request
@@ -66,7 +55,8 @@ export class RegisterComponent implements OnInit {
 
     const password = this.registerForm.get('password').value;
 
-    console.log(inputUser);
-    this.store.dispatch(requestRegistration({ user: inputUser, password }));
+    if (this.registerForm.valid) {
+      this.authFacade.register(inputUser, password);
+    }
   }
 }

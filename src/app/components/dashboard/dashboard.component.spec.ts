@@ -6,6 +6,22 @@ import { MemoizedSelector } from '@ngrx/store';
 import { BudgetState } from 'src/app/components/budgets/store/models/budget-state.model';
 import { getBudgets } from '../budgets/store';
 import { Budget } from 'src/app/components/budgets/store/models/budget.model';
+import { DashboardFacade } from './dashboard.facade';
+import { of } from 'rxjs';
+import { MOCK_BUDGET } from '../budgets/store/models/budget-mock-state';
+import { MOCK_EXPENSE } from '../expenses/store/models/expense-mock-state';
+
+const MockDashboardFacade = {
+  budgets$: of([MOCK_BUDGET]),
+  expenses$: of([MOCK_EXPENSE]),
+  loadBudgets: () => null,
+  loadExpenses: () => null,
+  countExpenses: () => null,
+  calcExpenseTotal: () => null,
+  calcExpenseTotalForBudget: () => null,
+  calcRemainingBudget: () => null,
+  isDeficit: () => null,
+};
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -15,8 +31,11 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [provideMockStore()],
       declarations: [DashboardComponent],
+      providers: [
+        provideMockStore(),
+        { provide: DashboardFacade, useValue: MockDashboardFacade },
+      ],
     }).compileComponents();
   }));
 
@@ -30,14 +49,5 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('may have budgets', (done) => {
-    mockGetBudgetsSelector.setResult(null);
-    mockStore.refreshState();
-    component.budgets$.subscribe((budgets) => {
-      expect(budgets).toBeNull();
-      done();
-    });
   });
 });

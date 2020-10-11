@@ -1,6 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { ApplicationState } from '../models/application-state.model';
-import { authReducer } from './auth.reducer';
+import { authReducer } from '../../components/auth/store/reducers/auth.reducer';
 import { routerReducer } from '@ngrx/router-store';
 import { budgetReducer } from '../../components/budgets/store/reducers/budget.reducer';
 import { budgetsReducer } from '../../components/budgets/store/reducers/budgets.reducer';

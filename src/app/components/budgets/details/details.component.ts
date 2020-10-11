@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Budget } from 'src/app/components/budgets/store/models/budget.model';
 import { Expense } from 'src/app/components/expenses/store/models/expense.model';
@@ -15,14 +14,32 @@ export class BudgetDetailsComponent implements OnInit {
   budget$: Observable<Budget>;
   expenses$: Observable<Expense[]>;
 
-  constructor(
-    private budgetsFacade: BudgetsFacade,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private budgetsFacade: BudgetsFacade) {}
 
   ngOnInit(): void {
-    const id: number = this.route.snapshot.params.budgetId;
-    this.budgetsFacade.loadBudget(id);
+    this.budgetsFacade.loadBudget();
+    this.budgetsFacade.loadExpensesForBudget();
     this.budget$ = this.budgetsFacade.selectedBudget$;
+    this.expenses$ = this.budgetsFacade.expenses$;
+  }
+
+  getExpenseCount(budget: Budget, expenses: Expense[]): number {
+    return this.budgetsFacade.countExpenses(budget, expenses);
+  }
+
+  getExpenseTotal(expenses: Expense[]): number {
+    return this.budgetsFacade.calcExpenseTotal(expenses);
+  }
+
+  getExpenseTotalForBudget(budget: Budget, expenses: Expense[]): number {
+    return this.budgetsFacade.calcExpenseTotalForBudget(budget, expenses);
+  }
+
+  getRemainingBudget(budget: Budget, expenses: Expense[]): number {
+    return this.budgetsFacade.calcRemainingBudget(budget, expenses);
+  }
+
+  isDeficit(amount): boolean {
+    return this.budgetsFacade.isDeficit(amount);
   }
 }

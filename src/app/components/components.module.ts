@@ -7,20 +7,12 @@ import { RouterModule } from '@angular/router';
 import { BudgetsModule } from './budgets/budgets.module';
 import { ExpensesModule } from './expenses/expenses.module';
 import { UserModule } from './user/user.module';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthModule } from './auth/auth.module';
+import { HeaderModule } from './header/header.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
-const components = [
-  DashboardComponent,
-  HeaderComponent,
-  LoginComponent,
-  PageNotFoundComponent,
-  RegisterComponent,
-];
+const components = [PageNotFoundComponent];
 
 @NgModule({
   declarations: [...components],
@@ -33,6 +25,9 @@ const components = [
     BudgetsModule,
     ExpensesModule,
     UserModule,
+    HeaderModule,
+    DashboardModule,
+    AuthModule,
   ],
   exports: [...components],
 })

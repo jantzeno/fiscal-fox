@@ -1,8 +1,10 @@
 <app-header></app-header>
-<div class="mx-auto">
-  <h2>Budget List</h2>
-  <div>
-    <a [routerLink]="['/budgets/new']"> New Budget </a>
+<main class="container-fluid">
+  <h2>Budget Dashboard</h2>
+  <div id="new-btn">
+    <a class="btn btn-sm btn-success" [routerLink]="['/budgets/new']">
+      New Budget
+    </a>
   </div>
   <table
     class="table table-striped"
@@ -10,41 +12,48 @@
   >
     <thead>
       <tr>
-        <th scope="col">Budget</th>
-        <th scope="col"><!-- Edit --></th>
+        <th scope="col">Budgets</th>
         <th scope="col">Amount</th>
         <th scope="col"># Expenses</th>
         <th scope="col">Expenses Total</th>
         <th scope="col">Remaining</th>
+        <th scope="col"><!-- Edit --></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let budget of budgets; let id = index">
-        <th>
+        <td>
           <a [routerLink]="['/budgets/details', budget.id]">
             {{ budget.name }}
           </a>
-        </th>
-        <th>
-          <a [routerLink]="['/budgets/edit', budget.id]"> Edit </a>
-        </th>
-        <th>{{ budget.amount | currency }}</th>
-        <th>{{ getExpenseCount(budget, expenses$ | async) }}</th>
-        <th>
+        </td>
+        <td>{{ budget.amount | currency }}</td>
+        <td>{{ getExpenseCount(budget, expenses$ | async) }}</td>
+        <td>
           {{ getExpenseTotalForBudget(budget, expenses$ | async) | currency }}
-        </th>
-        <th
+        </td>
+        <td
           [ngClass]="{
             deficit: isDeficit(getRemainingBudget(budget, expenses$ | async))
           }"
         >
           {{ getRemainingBudget(budget, expenses$ | async) | currency }}
-        </th>
+        </td>
+        <td>
+          <a
+            class="btn btn-sm btn-info"
+            [routerLink]="['/budgets/edit', budget.id]"
+          >
+            Edit
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>
-
+  <div>
+    <h4 *ngIf="(budgets$ | async).length === 0">There are no budgets.</h4>
+  </div>
   <ng-template #loadingBudgets>
     <div>Loading Budgets...</div>
   </ng-template>
-</div>
+</main>

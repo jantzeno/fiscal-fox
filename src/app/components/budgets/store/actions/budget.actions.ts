@@ -58,17 +58,17 @@ export const updateBudgetFailure = createAction(
   props<{ error: any }>()
 );
 
-// Remove Budget
-export const removeBudget = createAction(
-  '[API] Remove Budget',
+// Delete Budget
+export const deleteBudget = createAction(
+  '[API] Delete Budget',
   props<{ budget: Budget }>()
 );
-export const removeBudgetSuccess = createAction(
-  '[API] Remove Budget Success',
+export const deleteBudgetSuccess = createAction(
+  '[API] Delete Budget Success',
   props<{ budget: Budget }>()
 );
-export const removeBudgetFailure = createAction(
-  '[API] Remove Budget Failure',
+export const deleteBudgetFailure = createAction(
+  '[API] Delete Budget Failure',
   props<{ error: any }>()
 );
 const budgetActions = union({
@@ -82,9 +82,9 @@ const budgetActions = union({
   updateBudget,
   updateBudgetSuccess,
   updateBudgetFailure,
-  removeBudget,
-  removeBudgetSuccess,
-  removeBudgetFailure,
+  deleteBudget,
+  deleteBudgetSuccess,
+  deleteBudgetFailure,
 });
 
 export type BudgetActionTypes = typeof budgetActions;

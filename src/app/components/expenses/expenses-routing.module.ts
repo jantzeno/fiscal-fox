@@ -14,7 +14,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'new',
+    path: 'new/:budgetId',
     component: ExpenseAddComponent,
   },
 

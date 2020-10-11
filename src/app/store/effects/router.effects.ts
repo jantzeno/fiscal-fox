@@ -27,7 +27,6 @@ export class RouterEffects {
         ofType(go),
         tap((action) => {
           const { path, query: queryParams, extras }: NavigationGo = action;
-          console.log(action);
           this.router.navigate(path, { queryParams, ...extras });
         })
       ),

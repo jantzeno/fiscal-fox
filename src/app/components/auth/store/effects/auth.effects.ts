@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as AuthActions from '../actions/auth.actions';
-import { AuthService } from '../../services/http/auth.service';
+import { AuthService } from '../../../../services/http/auth.service';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   AuthResponse,
   RegistrationResponse,
-} from '../../services/http/models/auth-response.model';
+} from '../../../../services/http/models/auth-response.model';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
@@ -44,7 +44,7 @@ export class AuthEffects {
         ofType(AuthActions.requestRegistrationSuccess),
         tap(({ isRegistered }) => {
           if (isRegistered) {
-            this.router.navigateByUrl('/login');
+            this.router.navigateByUrl('/auth/login');
           }
         })
       ),
@@ -100,7 +100,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.requestTokenCheckFailure),
         tap(({ error }) => {
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/auth/login');
         })
       ),
     { dispatch: false }
@@ -127,7 +127,6 @@ export class AuthEffects {
         tap(({ isAuth }) => {
           if (!isAuth) {
             localStorage.setItem('token', '');
-            this.router.navigateByUrl('/');
           }
         })
       ),

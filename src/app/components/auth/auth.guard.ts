@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { ApplicationState } from './store/models/application-state.model';
+import { ApplicationState } from '../../store/models/application-state.model';
 import { getIsAuth } from './store/selectors';
 import { catchError, switchMap, filter, first, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -28,12 +28,10 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> {
     return this.store.select(getIsAuth).pipe(
       tap((isAuth: boolean) => {
-        if (!isAuth) {
-          if (this.token) {
-            this.store.dispatch(requestTokenCheck({ token: this.token }));
-          } else {
-            this.router.navigate(['login']);
-          }
+        if (isAuth || this.token) {
+          this.store.dispatch(requestTokenCheck({ token: this.token }));
+        } else {
+          this.router.navigate(['auth/login']);
         }
       }),
       filter((isAuth: boolean) => isAuth),

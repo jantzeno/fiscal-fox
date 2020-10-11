@@ -7,6 +7,7 @@ import { Budget } from '../budgets/store/models/budget.model';
 import { Expense } from '../expenses/store/models/expense.model';
 import { loadBudgets, getBudgets } from '../budgets/store';
 import { loadExpenses, getExpenses } from '../expenses/store';
+import { CalcHelper } from '../helpers/calc-helper';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardFacade {
@@ -24,51 +25,26 @@ export class DashboardFacade {
   }
 
   filterExpensesForBudget(budget: Budget, expenses: Expense[]): Expense[] {
-    return Object.values(expenses).filter(
-      (expense) => expense.budgetId === budget.id
-    );
+    return CalcHelper.filterExpensesForBudget(budget, expenses);
   }
 
   calcExpenseTotal(expenses: Expense[]): number {
-    let total = 0;
-    if (expenses) {
-      for (let expense of expenses) {
-        total += expense.amount;
-      }
-    }
-    return total;
+    return CalcHelper.calcExpenseTotal(expenses);
   }
 
   calcExpenseTotalForBudget(budget: Budget, expenses: Expense[]): number {
-    let total = 0;
-    let budgetExpenses = this.filterExpensesForBudget(budget, expenses);
-    total = this.calcExpenseTotal(budgetExpenses);
-    return total;
+    return CalcHelper.calcExpenseTotalForBudget(budget, expenses);
   }
 
   calcRemainingBudget(budget: Budget, expenses: Expense[]): number {
-    let remaining = 0;
-    let budgetExpenses = this.filterExpensesForBudget(budget, expenses);
-    let expenseTotal = this.calcExpenseTotal(budgetExpenses);
-    if (budget.amount) {
-      remaining = budget.amount - expenseTotal;
-    }
-    return remaining;
+    return CalcHelper.calcRemainingBudget(budget, expenses);
   }
 
   countExpenses(budget: Budget, expenses: Expense[]): number {
-    let count = -1;
-    if (budget && expenses) {
-      count = this.filterExpensesForBudget(budget, expenses).length;
-    }
-    return count;
+    return CalcHelper.countExpenses(budget, expenses);
   }
 
   isDeficit(amount: Number): boolean {
-    let deficit = false;
-    if (amount <= 0) {
-      deficit = true;
-    }
-    return deficit;
+    return CalcHelper.isDeficit(amount);
   }
 }

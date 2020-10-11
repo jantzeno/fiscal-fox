@@ -1,20 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Store } from '@ngrx/store';
+import { cold, hot } from 'jasmine-marbles';
+import { Observable, of } from 'rxjs';
 import {
   ExpenseResponse,
   ExpensesResponse,
 } from '../../../../services/http/models/expenses-response.model';
 import { ExpenseService } from '../../../../services/http/expense.service';
 import { MOCK_STORE$ } from 'src/app/store/testing';
-import * as ExpenseActions from '../actions';
 import { MOCK_EXPENSE } from '../models/expense-mock-state';
+import * as ExpenseActions from '../actions';
 import { ExpenseEffects } from './expense.effects';
-import { cold, hot } from 'jasmine-marbles';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 const mockExpensesService = {
   getExpenses: () => of([MOCK_EXPENSE]),
+  getExpensesByBudgetId: () => of([MOCK_EXPENSE]),
   getExpense: () => of(MOCK_EXPENSE),
   createExpense: () => of(MOCK_EXPENSE),
   updateExpense: () => of(MOCK_EXPENSE),
@@ -36,6 +38,11 @@ describe('ExpensesEffects', () => {
         provideMockActions(() => actions$),
         { provide: Store, useValue: MOCK_STORE$ },
         { provide: ExpenseService, useValue: mockExpensesService },
+        // Fake route to satisfy Route in constructor
+        {
+          provide: Router,
+          useValue: { navigate: ([route, extra]) => [route, extra] },
+        },
       ],
     });
     effects = TestBed.inject(ExpenseEffects);
@@ -72,6 +79,45 @@ describe('ExpensesEffects', () => {
       });
 
       expect(effects.loadExpenses$).toBeObservable(expected$);
+    });
+  });
+
+  describe('loadExpensesByBudgetId$', () => {
+    it('should successfully load expenses by budget id', () => {
+      spyOn(expenseService, 'getExpensesByBudgetId').and.returnValue(
+        of(mockExpensesResponse)
+      );
+      actions$ = hot('a', {
+        a: ExpenseActions.loadExpensesByBudgetId({
+          budgetId: MOCK_EXPENSE.budgetId,
+        }),
+      });
+
+      const expected$ = cold('b', {
+        b: ExpenseActions.loadExpensesByBudgetIdSuccess({
+          expenses: [MOCK_EXPENSE],
+        }),
+      });
+
+      expect(effects.loadExpensesByBudgetId$).toBeObservable(expected$);
+    });
+
+    it('should fail to load expenses by budget id', () => {
+      const errMsg = 'Nope.';
+      const error$ = cold('#', {}, errMsg);
+
+      spyOn(expenseService, 'getExpensesByBudgetId').and.returnValue(error$);
+      actions$ = hot('a', {
+        a: ExpenseActions.loadExpensesByBudgetId({
+          budgetId: MOCK_EXPENSE.budgetId,
+        }),
+      });
+
+      const expected$ = cold('b', {
+        b: ExpenseActions.loadExpensesByBudgetIdFailure({ error: errMsg }),
+      });
+
+      expect(effects.loadExpensesByBudgetId$).toBeObservable(expected$);
     });
   });
 
@@ -175,11 +221,11 @@ describe('ExpensesEffects', () => {
     it('should successfully delete a expense', () => {
       spyOn(expenseService, 'deleteExpense').and.returnValue(of(true));
       actions$ = hot('a', {
-        a: ExpenseActions.removeExpense({ expense: MOCK_EXPENSE }),
+        a: ExpenseActions.deleteExpense({ expense: MOCK_EXPENSE }),
       });
 
       const expected$ = cold('b', {
-        b: ExpenseActions.removeExpenseSuccess({ expense: MOCK_EXPENSE }),
+        b: ExpenseActions.deleteExpenseSuccess({ expense: MOCK_EXPENSE }),
       });
       expect(effects.deleteExpense$).toBeObservable(expected$);
     });
@@ -190,11 +236,11 @@ describe('ExpensesEffects', () => {
 
       spyOn(expenseService, 'deleteExpense').and.returnValue(error$);
       actions$ = hot('a', {
-        a: ExpenseActions.removeExpense({ expense: MOCK_EXPENSE }),
+        a: ExpenseActions.deleteExpense({ expense: MOCK_EXPENSE }),
       });
 
       const expected$ = cold('b', {
-        b: ExpenseActions.removeExpenseFailure({ error: errMsg }),
+        b: ExpenseActions.deleteExpenseFailure({ error: errMsg }),
       });
 
       expect(effects.deleteExpense$).toBeObservable(expected$);

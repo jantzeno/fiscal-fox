@@ -19,12 +19,24 @@ export class ExpenseService {
     return this.http.get<ExpensesResponse>(`${EXPENSE_URL}/`);
   }
 
+  getExpensesByBudgetId(id: number): Observable<ExpensesResponse> {
+    return this.http.get<ExpensesResponse>(`${EXPENSE_URL}/budget/${id}`);
+  }
+
   getExpense(id: number): Observable<ExpenseResponse> {
     return this.http.get<ExpenseResponse>(`${EXPENSE_URL}/${id}`);
   }
 
-  createExpense(name: string, amount: number): Observable<ExpenseResponse> {
-    return this.http.post<ExpenseResponse>(`${EXPENSE_URL}/`, { name, amount });
+  createExpense(
+    name: string,
+    budgetId: number,
+    amount: number
+  ): Observable<ExpenseResponse> {
+    return this.http.post<ExpenseResponse>(`${EXPENSE_URL}/`, {
+      name,
+      budgetId,
+      amount,
+    });
   }
 
   updateExpense(

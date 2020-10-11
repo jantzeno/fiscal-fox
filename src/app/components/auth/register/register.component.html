@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="text-center"><h1>Register</h1></div>
+  <form class="register-form" [formGroup]="registerForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        id="username"
+        class="form-control"
+        type="text"
+        formControlName="username"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('username')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('username').required">Username is required.</div>
+      <div *ngIf="getErrors('username').minlength">
+        Username must be at least 6 characters long.
+      </div>
+      <div *ngIf="getErrors('username').pattern">
+        Examples: <br />
+        user.name <br />
+        user_name <br />
+        user.last-name_1
+      </div>
+    </ngb-alert>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        class="form-control"
+        type="password"
+        formControlName="password"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('password')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('password').required">Password is required.</div>
+      <div *ngIf="getErrors('password').minlength">
+        Password must be at least 8 characters long.
+      </div>
+    </ngb-alert>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        class="form-control"
+        type="text"
+        formControlName="email"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('email')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('email').required">Email is required.</div>
+      <div *ngIf="getErrors('email')">Must be a valid email format.</div>
+    </ngb-alert>
+    <div>
+      <legend class="col-form-label">Role</legend>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          formControlName="role"
+          id="budgetAnalyst"
+          value="BUDGET_ANALYST"
+        />
+        <label class="form-check-label" for="budgetAnalyst">
+          Budget Analyst
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          formControlName="role"
+          id="programManager"
+          value="PROGRAM_MANAGER"
+        />
+        <label class="form-check-label" for="programManager">
+          Program Manager
+        </label>
+      </div>
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('role')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('role').required">A role is required.</div>
+    </ngb-alert>
+    <div class="mt-4">
+      <button
+        [disabled]="!registerForm.valid"
+        type="submit"
+        class="btn btn-block btn-primary"
+        (click)="onSubmit()"
+      >
+        Register
+      </button>
+    </div>
+    <div class="mt-4">
+      <a class="btn btn-block btn-warning" [routerLink]="['/auth/login']">
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>

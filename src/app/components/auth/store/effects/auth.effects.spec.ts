@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of } from 'rxjs';
@@ -8,12 +7,12 @@ import {
   AuthResponse,
   RegistrationResponse,
   LogoutResponse,
-} from '../../services/http/models/auth-response.model';
-import { AuthService } from '../../services/http/auth.service';
+} from '../../../../services/http/models/auth-response.model';
+import { AuthService } from '../../../../services/http/auth.service';
 import { MOCK_STORE$ } from 'src/app/store/testing';
 import * as AuthActions from '../actions/auth.actions';
-import { MOCK_USER } from '../../components/user/store/models/user-mock-state';
-import { AuthEffects } from '../effects/auth.effects';
+import { MOCK_USER } from '../../../user/store/models/user-mock-state';
+import { AuthEffects } from './auth.effects';
 import { Router } from '@angular/router';
 
 const mockAuthService = {

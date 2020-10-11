@@ -1,1 +1,82 @@
-<p>edit works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <div class="text-center"><h2>Edit Expense</h2></div>
+  <form class="expense-form" [formGroup]="expenseForm">
+    <div class="form-group">
+      <label for="name">Expense Name</label>
+      <input
+        id="name"
+        class="form-control"
+        type="text"
+        formControlName="name"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('name')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('name').required">Name is required.</div>
+      <div *ngIf="getErrors('name').minlength">
+        Expense name must be at least 4 characters long.
+      </div>
+      <div *ngIf="getErrors('name').pattern">
+        Expense Name Examples: <br />
+        new expense <br />
+        new-expense <br />
+        new_expense <br />
+      </div>
+    </ngb-alert>
+    <div class="form-group">
+      <label for="amount">Expense Amount</label>
+      <input
+        id="amount"
+        class="form-control"
+        type="number"
+        pattern="[0-9]*"
+        min="0"
+        formControlName="amount"
+      />
+    </div>
+    <ngb-alert
+      *ngIf="checkValidInput('amount')"
+      [type]="'danger'"
+      [dismissible]="false"
+    >
+      <div *ngIf="getErrors('amount').required">
+        Expense amount is required.
+      </div>
+      <div *ngIf="getErrors('amount').pattern">
+        Expense amount must be a number.
+      </div>
+    </ngb-alert>
+    <div class="mt-4">
+      <button
+        type="submit"
+        class="btn btn-block btn-primary"
+        (click)="onSubmitUpdate()"
+      >
+        Update Expense
+      </button>
+    </div>
+    <div class="mt-4">
+      <a
+        *ngIf="expense$ | async"
+        class="btn btn-block btn-warning"
+        [routerLink]="['/budgets/details', (expense$ | async).budgetId]"
+      >
+        Cancel
+      </a>
+    </div>
+    <div class="mt-4">
+      <button
+        type="submit"
+        class="btn btn-block btn-danger"
+        (click)="onSubmitDelete()"
+      >
+        Delete Expense
+      </button>
+    </div>
+  </form>
+</div>

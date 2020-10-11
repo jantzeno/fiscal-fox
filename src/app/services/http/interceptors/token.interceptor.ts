@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { ApplicationState } from '../../../store/models/application-state.model';
-import { getToken } from '../../../store';
+import { getToken } from '../../../components/auth/store';
 import { first, flatMap } from 'rxjs/operators';
 
 @Injectable()

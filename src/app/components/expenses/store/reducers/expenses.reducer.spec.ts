@@ -1,6 +1,7 @@
 import { ExpensesState } from '../models/expenses-state.model';
 import * as ExpenseActions from '../actions/expense.actions';
 import { EXPENSES_INITIAL_MOCK_STATE } from '../models/expenses-mock-state';
+import { EXPENSE_INITIAL_MOCK_STATE } from '../models/expense-mock-state';
 import { expensesReducer } from './expenses.reducer';
 
 describe('Expenses Reducer', () => {
@@ -32,6 +33,48 @@ describe('Expenses Reducer', () => {
 
   it('should set error on `loadExpensesFailure`', () => {
     const action = ExpenseActions.loadExpensesFailure({ error: 'Nope.' });
+    const expected: ExpensesState = {
+      ...EXPENSES_INITIAL_MOCK_STATE,
+      isLoading: false,
+      isLoaded: false,
+    };
+    const actual = expensesReducer(EXPENSES_INITIAL_MOCK_STATE, action);
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should load expenses on `loadExpenses`', () => {
+    const action = ExpenseActions.loadExpensesByBudgetId({
+      budgetId: EXPENSE_INITIAL_MOCK_STATE.expense.budgetId,
+    });
+    const expected: ExpensesState = {
+      ...EXPENSES_INITIAL_MOCK_STATE,
+      isLoading: true,
+      isLoaded: false,
+    };
+    const actual = expensesReducer(EXPENSES_INITIAL_MOCK_STATE, action);
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should get expenses on `loadExpensesByBudgetIdSuccessful`', () => {
+    const action = ExpenseActions.loadExpensesByBudgetIdSuccess({
+      expenses: EXPENSES_INITIAL_MOCK_STATE.expenses,
+    });
+    const expected: ExpensesState = {
+      ...EXPENSES_INITIAL_MOCK_STATE,
+      isLoading: false,
+      isLoaded: true,
+    };
+    const actual = expensesReducer(EXPENSES_INITIAL_MOCK_STATE, action);
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should set error on `loadExpensesFailure`', () => {
+    const action = ExpenseActions.loadExpensesByBudgetIdFailure({
+      error: 'Nope.',
+    });
     const expected: ExpensesState = {
       ...EXPENSES_INITIAL_MOCK_STATE,
       isLoading: false,

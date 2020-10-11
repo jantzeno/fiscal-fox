@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as ExpenseActions from '../actions/expense.actions';
 import { ExpenseService } from '../../../../services/http/expense.service';
 import {
   ExpenseResponse,
   ExpensesResponse,
 } from '../../../../services/http/models/expenses-response.model';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class ExpenseEffects {
+  constructor(
+    private actions$: Actions,
+    private expenseService: ExpenseService,
+    private router: Router
+  ) {}
+
   // Get All Expenses
   loadExpenses$ = createEffect(() =>
     this.actions$.pipe(
@@ -22,6 +29,23 @@ export class ExpenseEffects {
           ),
           catchError((error) =>
             of(ExpenseActions.loadExpensesFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
+  // Get All Expenses
+  loadExpensesByBudgetId$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ExpenseActions.loadExpensesByBudgetId),
+      switchMap(({ budgetId }) =>
+        this.expenseService.getExpensesByBudgetId(budgetId).pipe(
+          map(({ expenses }: ExpensesResponse) =>
+            ExpenseActions.loadExpensesByBudgetIdSuccess({ expenses })
+          ),
+          catchError((error) =>
+            of(ExpenseActions.loadExpensesByBudgetIdFailure({ error }))
           )
         )
       )
@@ -50,16 +74,32 @@ export class ExpenseEffects {
     this.actions$.pipe(
       ofType(ExpenseActions.createExpense),
       switchMap(({ expense }) =>
-        this.expenseService.createExpense(expense.name, expense.amount).pipe(
-          map(({ expense }: ExpenseResponse) =>
-            ExpenseActions.createExpenseSuccess({ expense })
-          ),
-          catchError((error) =>
-            of(ExpenseActions.createExpenseFailure({ error }))
+        this.expenseService
+          .createExpense(expense.name, expense.budgetId, expense.amount)
+          .pipe(
+            map(({ expense }: ExpenseResponse) =>
+              ExpenseActions.createExpenseSuccess({ expense })
+            ),
+            catchError((error) =>
+              of(ExpenseActions.createExpenseFailure({ error }))
+            )
           )
-        )
       )
     )
+  );
+
+  // Create Expense Side Effect
+  createExpenseSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ExpenseActions.createExpenseSuccess),
+        tap(({ expense }) => {
+          if (expense) {
+            this.router.navigate(['/budgets/details/', expense.budgetId]);
+          }
+        })
+      ),
+    { dispatch: false }
   );
 
   // Update Expense
@@ -81,23 +121,46 @@ export class ExpenseEffects {
     )
   );
 
+  // Update Expense Side Effect
+  updateExpenseSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ExpenseActions.updateExpenseSuccess),
+        tap(({ expense }) => {
+          if (expense) {
+            this.router.navigate(['/budgets/details/', expense.budgetId]);
+          }
+        })
+      ),
+    { dispatch: false }
+  );
+
   // Delete Expense
   deleteExpense$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ExpenseActions.removeExpense),
+      ofType(ExpenseActions.deleteExpense),
       switchMap(({ expense }) =>
         this.expenseService.deleteExpense(expense.id).pipe(
-          map(() => ExpenseActions.removeExpenseSuccess({ expense })),
+          map(() => ExpenseActions.deleteExpenseSuccess({ expense })),
           catchError((error) =>
-            of(ExpenseActions.removeExpenseFailure({ error }))
+            of(ExpenseActions.deleteExpenseFailure({ error }))
           )
         )
       )
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private expenseService: ExpenseService
-  ) {}
+  // Delete Expense Side Effect
+  deleteExpenseSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ExpenseActions.deleteExpenseSuccess),
+        tap(({ expense }) => {
+          if (expense) {
+            this.router.navigate(['/budgets/details/', expense.budgetId]);
+          }
+        })
+      ),
+    { dispatch: false }
+  );
 }

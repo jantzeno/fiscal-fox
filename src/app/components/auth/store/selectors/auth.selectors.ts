@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { ApplicationState } from '../models/application-state.model';
+import { ApplicationState } from '../../../../store/models/application-state.model';
 import { AuthState } from '../models/auth-state.model';
 
 export const selectAuthState = ({ authState }: ApplicationState) => authState;

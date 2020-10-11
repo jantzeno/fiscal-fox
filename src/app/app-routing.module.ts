@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
-import { AuthGuard } from './auth.guard';
-import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './components/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -40,11 +37,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   // Login
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./components/auth/auth.module').then((m) => m.AuthModule),
+  },
   // Register
   {
     path: 'register',
-    component: RegisterComponent,
+    loadChildren: () =>
+      import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '', pathMatch: 'full' },

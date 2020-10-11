@@ -17,6 +17,23 @@ const reducer = createReducer(
     ...state,
     isLoading: false,
     isLoaded: false,
+  })),
+
+  // Load Expenses By Budget Id
+  on(ExpenseActions.loadExpensesByBudgetId, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(ExpenseActions.loadExpensesByBudgetIdSuccess, (state, { expenses }) => ({
+    ...state,
+    expenses,
+    isLoading: false,
+    isLoaded: true,
+  })),
+  on(ExpenseActions.loadExpensesByBudgetIdFailure, (state) => ({
+    ...state,
+    isLoading: false,
+    isLoaded: false,
   }))
 );
 

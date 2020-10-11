@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { ApplicationState } from '../../store/models/application-state.model';
 import { Budget } from './store/models/budget.model';
@@ -10,8 +10,14 @@ import {
   getBudgets,
   getSelectedBudget,
   loadBudget,
+  createBudget,
+  updateBudget,
+  getSelectedBudgetId,
+  deleteBudget,
 } from './store';
-import { loadExpenses, getExpenses } from '../expenses/store';
+import { loadExpensesByBudgetId, getExpenses } from '../expenses/store';
+import { CalcHelper } from '../helpers/calc-helper';
+import { FormHelper } from '../helpers/form-helper';
 
 @Injectable({ providedIn: 'root' })
 export class BudgetsFacade {
@@ -23,17 +29,75 @@ export class BudgetsFacade {
 
   constructor(private store: Store<ApplicationState>) {}
 
+  createBudget(budget): void {
+    if (budget) {
+      this.store.dispatch(createBudget({ budget: budget }));
+    }
+  }
+
+  updateBudget(budget): void {
+    if (budget) {
+      this.store.dispatch(updateBudget({ budget: budget }));
+    }
+  }
+
+  deleteBudget(budget): void {
+    if (budget) {
+      this.store.dispatch(deleteBudget({ budget: budget }));
+    }
+  }
+
   loadBudgets(): void {
     this.store.dispatch(loadBudgets());
   }
 
-  loadBudget(id: number): void {
-    if (id) {
-      this.store.dispatch(loadBudget({ budgetId: id }));
-    }
+  loadBudget(): void {
+    this.store
+      .select(getSelectedBudgetId)
+      .subscribe((id) => {
+        if (id) {
+          this.store.dispatch(loadBudget({ budgetId: id }));
+        }
+      })
+      .unsubscribe();
   }
 
-  loadExpenses(): void {
-    this.store.dispatch(loadExpenses());
+  loadExpensesForBudget(): void {
+    this.store
+      .select(getSelectedBudgetId)
+      .subscribe((id) => {
+        if (id) {
+          this.store.dispatch(loadExpensesByBudgetId({ budgetId: id }));
+        }
+      })
+      .unsubscribe();
+  }
+
+  checkValidInput(form, fieldName): boolean {
+    return FormHelper.checkValidInput(form, fieldName);
+  }
+
+  getErrors(form, fieldName) {
+    return FormHelper.getErrors(form, fieldName);
+  }
+
+  calcExpenseTotal(expenses: Expense[]): number {
+    return CalcHelper.calcExpenseTotal(expenses);
+  }
+
+  calcExpenseTotalForBudget(budget: Budget, expenses: Expense[]): number {
+    return CalcHelper.calcExpenseTotalForBudget(budget, expenses);
+  }
+
+  calcRemainingBudget(budget: Budget, expenses: Expense[]): number {
+    return CalcHelper.calcRemainingBudget(budget, expenses);
+  }
+
+  countExpenses(budget: Budget, expenses: Expense[]): number {
+    return CalcHelper.countExpenses(budget, expenses);
+  }
+
+  isDeficit(amount: Number): boolean {
+    return CalcHelper.isDeficit(amount);
   }
 }

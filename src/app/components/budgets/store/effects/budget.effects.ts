@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as BudgetActions from '../actions/budget.actions';
 import { BudgetService } from '../../../../services/http/budget.service';
 import {
   BudgetResponse,
   BudgetsResponse,
 } from '../../../../services/http/models/budgets-response.model';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class BudgetEffects {
   constructor(
     private actions$: Actions,
-    private budgetService: BudgetService
+    private budgetService: BudgetService,
+    private router: Router
   ) {}
 
   // Get All Budgets
@@ -63,6 +65,20 @@ export class BudgetEffects {
     )
   );
 
+  // Create Budget Side Effect
+  createBudgetSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BudgetActions.createBudgetSuccess),
+        tap(({ budget }) => {
+          if (budget) {
+            this.router.navigate(['/dashboard']);
+          }
+        })
+      ),
+    { dispatch: false }
+  );
+
   // Update Budget
   updateBudget$ = createEffect(() =>
     this.actions$.pipe(
@@ -82,18 +98,46 @@ export class BudgetEffects {
     )
   );
 
+  // Update Budget Side Effect
+  updateBudgetSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BudgetActions.updateBudgetSuccess),
+        tap(({ budget }) => {
+          if (budget) {
+            this.router.navigate(['/dashboard']);
+          }
+        })
+      ),
+    { dispatch: false }
+  );
+
   // Delete Budget
   deleteBudget$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BudgetActions.removeBudget),
+      ofType(BudgetActions.deleteBudget),
       switchMap(({ budget }) =>
         this.budgetService.deleteBudget(budget.id).pipe(
-          map(() => BudgetActions.removeBudgetSuccess({ budget })),
+          map(() => BudgetActions.deleteBudgetSuccess({ budget })),
           catchError((error) =>
-            of(BudgetActions.removeBudgetFailure({ error }))
+            of(BudgetActions.deleteBudgetFailure({ error }))
           )
         )
       )
     )
+  );
+
+  // Delete Budget Side Effect
+  deleteBudgetSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BudgetActions.deleteBudgetSuccess),
+        tap(({ budget }) => {
+          if (budget) {
+            this.router.navigate(['/dashboard']);
+          }
+        })
+      ),
+    { dispatch: false }
   );
 }

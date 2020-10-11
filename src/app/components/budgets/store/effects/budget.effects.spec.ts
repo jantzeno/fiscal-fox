@@ -12,6 +12,7 @@ import { MOCK_BUDGET } from '../models/budget-mock-state';
 import { BudgetEffects } from './budget.effects';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 const mockBudgetsService = {
   getBudgets: () => of([MOCK_BUDGET]),
@@ -36,6 +37,11 @@ describe('BudgetsEffects', () => {
         provideMockActions(() => actions$),
         { provide: Store, useValue: MOCK_STORE$ },
         { provide: BudgetService, useValue: mockBudgetsService },
+        // Fake route to satisfy Route in constructor
+        {
+          provide: Router,
+          useValue: { navigate: ([route, extra]) => [route, extra] },
+        },
       ],
     });
     effects = TestBed.inject(BudgetEffects);
@@ -173,11 +179,11 @@ describe('BudgetsEffects', () => {
     it('should successfully delete a budget', () => {
       spyOn(budgetService, 'deleteBudget').and.returnValue(of(true));
       actions$ = hot('a', {
-        a: BudgetActions.removeBudget({ budget: MOCK_BUDGET }),
+        a: BudgetActions.deleteBudget({ budget: MOCK_BUDGET }),
       });
 
       const expected$ = cold('b', {
-        b: BudgetActions.removeBudgetSuccess({ budget: MOCK_BUDGET }),
+        b: BudgetActions.deleteBudgetSuccess({ budget: MOCK_BUDGET }),
       });
       expect(effects.deleteBudget$).toBeObservable(expected$);
     });
@@ -188,11 +194,11 @@ describe('BudgetsEffects', () => {
 
       spyOn(budgetService, 'deleteBudget').and.returnValue(error$);
       actions$ = hot('a', {
-        a: BudgetActions.removeBudget({ budget: MOCK_BUDGET }),
+        a: BudgetActions.deleteBudget({ budget: MOCK_BUDGET }),
       });
 
       const expected$ = cold('b', {
-        b: BudgetActions.removeBudgetFailure({ error: errMsg }),
+        b: BudgetActions.deleteBudgetFailure({ error: errMsg }),
       });
 
       expect(effects.deleteBudget$).toBeObservable(expected$);

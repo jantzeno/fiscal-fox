@@ -16,6 +16,19 @@ export const loadExpensesFailure = createAction(
   props<{ error: any }>()
 );
 
+export const loadExpensesByBudgetId = createAction(
+  '[API] Load Expenses By BudgetId',
+  props<{ budgetId: number }>()
+);
+export const loadExpensesByBudgetIdSuccess = createAction(
+  '[API] Load Expenses By BudgetId Success',
+  props<{ expenses: Expense[] }>()
+);
+export const loadExpensesByBudgetIdFailure = createAction(
+  '[API] Load Expenses By BudgetId Failure',
+  props<{ error: any }>()
+);
+
 // Load Expense
 export const loadExpense = createAction(
   '[API] Load Expense',
@@ -58,17 +71,17 @@ export const updateExpenseFailure = createAction(
   props<{ error: any }>()
 );
 
-// Remove Expense
-export const removeExpense = createAction(
-  '[API] Remove Expense',
+// Delete Expense
+export const deleteExpense = createAction(
+  '[API] Delete Expense',
   props<{ expense: Expense }>()
 );
-export const removeExpenseSuccess = createAction(
-  '[API] Remove Expense Success',
+export const deleteExpenseSuccess = createAction(
+  '[API] Delete Expense Success',
   props<{ expense: Expense }>()
 );
-export const removeExpenseFailure = createAction(
-  '[API] Remove Expense Failure',
+export const deleteExpenseFailure = createAction(
+  '[API] Delete Expense Failure',
   props<{ error: any }>()
 );
 const expenseActions = union({
@@ -82,9 +95,9 @@ const expenseActions = union({
   updateExpense,
   updateExpenseSuccess,
   updateExpenseFailure,
-  removeExpense,
-  removeExpenseSuccess,
-  removeExpenseFailure,
+  deleteExpense,
+  deleteExpenseSuccess,
+  deleteExpenseFailure,
 });
 
 export type ExpenseActionTypes = typeof expenseActions;
