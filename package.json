@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "pree2e": "./node_modules/protractor/bin/webdriver-manager update --standalone false --gecko false",
+    "e2e": "protractor ./e2e/protractor.conf.js"
   },
   "private": true,
   "dependencies": {
@@ -35,10 +36,17 @@
     "@angular-devkit/build-angular": "~0.1000.8",
     "@angular/cli": "~10.0.8",
     "@angular/compiler-cli": "~10.0.14",
-    "@types/node": "^12.11.1",
+    "@types/chai": "^4.2.13",
+    "@types/cucumber": "^4.0.7",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
+    "@types/selenium-webdriver": "^3.0.10",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "codelyzer": "^6.0.0",
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.2.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -46,9 +54,13 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
+    "protractor": "^7.0.0",
+    "protractor-cucumber-framework": "^6.2.1",
+    "selenium-webdriver": "^3.6.0",
+    "shelljs.exec": "^1.1.8",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "typescript": "~3.9.5",
+    "webdriver-manager": "^12.1.2"
   }
 }

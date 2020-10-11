@@ -1,0 +1,159 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Registration and Authentication, Login and Logout",
+    "line": 2,
+    "id": "registration-and-authentication,-login-and-logout",
+    "tags": [
+      {
+        "name": "@FE",
+        "line": 1
+      },
+      {
+        "name": "@app",
+        "line": 1
+      }
+    ],
+    "uri": "e2e/src/features/auth.feature",
+    "elements": [
+      {
+        "id": "registration-and-authentication,-login-and-logout;as-an-unauthenticated-user,-i-can-see-the-login-form",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "As an unauthenticated user, I can see the login form",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I navigate to the login page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 679000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "I see the login form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 110000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3237000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "registration-and-authentication,-login-and-logout;as-an-unauthenticated-user,-i-can-see-the-registration-form",
+        "keyword": "Scenario",
+        "line": 8,
+        "name": "As an unauthenticated user, I can see the registration form",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 9,
+            "name": "I navigate to the login page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 821000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "I see the login form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 96000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I click the register button",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:15"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 17000000,
+              "error_message": "WebDriverError: HTTP method not allowed\n    at parseHttpResponse (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/http.js:536:11)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/http.js:441:30\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\nFrom: Task: mouseMove\n    at Driver.schedule (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/webdriver.js:807:17)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/actions.js:124:23\n    at Array.map (<anonymous>)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/actions.js:123:29\n    at TaskQueue.execute_ (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:3084:14)\n    at TaskQueue.executeNext_ (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:3067:27)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:2927:27\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:668:7\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\nFrom: Task: ActionSequence.perform\n    at ActionSequence.perform (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/actions.js:122:33)\n    at AuthPage.clickButton (/home/jantzen/projects/regis/fiscal-fox/e2e/src/pages/base.po.ts:52:8)\n    at AuthPage.clickRegisterButton (/home/jantzen/projects/regis/fiscal-fox/e2e/src/pages/auth.po.ts:24:16)\n    at World.<anonymous> (/home/jantzen/projects/regis/fiscal-fox/e2e/src/steps/auth.steps.ts:16:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "I navigate to the registration page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:25"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3098000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
