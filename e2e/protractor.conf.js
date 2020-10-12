@@ -19,22 +19,14 @@ exports.config = {
     format: `json:${__dirname}/coverage/results.json`,
   },
   capabilities: {
-    directConnect: false,
-    // browserName: "chrome",
-    // chromeOptions: {
-    //   args: [
-    //     "--headless",
-    //     "--disable-gpu",
-    //     "--window-size=800x600",
-    //     "--no-sandbox",
-    //     "--disable-extensions",
-    //     "--disable-dev-shm-usage",
-    //   ],
-    // },
-
-    browserName: "firefox",
-    "moz:firefoxOptions": {
-      args: ["--headless"],
+    browserName: "chrome",
+    chromeOptions: {
+      args: [
+        "--headless",
+        "--disable-gpu",
+        "--window-size=800x600",
+        "--disable-dev-shm-usage",
+      ],
     },
   },
   restartBrowserBetweenTests: true,

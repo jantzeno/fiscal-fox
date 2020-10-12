@@ -100,6 +100,7 @@
       <button
         [disabled]="!registerForm.valid"
         type="submit"
+        id="register-btn"
         class="btn btn-block btn-primary"
         (click)="onSubmit()"
       >
@@ -107,7 +108,11 @@
       </button>
     </div>
     <div class="mt-4">
-      <a class="btn btn-block btn-warning" [routerLink]="['/auth/login']">
+      <a
+        id="cancel-btn"
+        class="btn btn-block btn-warning"
+        [routerLink]="['/auth/login']"
+      >
         Cancel
       </a>
     </div>

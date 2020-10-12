@@ -52,6 +52,7 @@
     <div class="mt-4">
       <button
         type="submit"
+        id="update-btn"
         class="btn btn-block btn-primary"
         (click)="onSubmitUpdate()"
       >
@@ -59,13 +60,18 @@
       </button>
     </div>
     <div class="mt-4">
-      <a class="btn btn-block btn-warning" [routerLink]="['/dashboard']">
+      <a
+        id="cancel-btn"
+        class="btn btn-block btn-warning"
+        [routerLink]="['/dashboard']"
+      >
         Cancel
       </a>
     </div>
     <div class="mt-4">
       <button
         type="submit"
+        id="delete-btn"
         class="btn btn-block btn-danger"
         (click)="onSubmitDelete()"
       >

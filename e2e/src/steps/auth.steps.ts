@@ -6,22 +6,61 @@ const expect = chaiAsExpected.expect;
 
 const authPage: AuthPage = new AuthPage();
 
-Given(/^I navigate to the login page$/, async () => {
-  await authPage.navigatetoLogin();
+// Givens
+
+Given('I navigate to the login page', async () => {
+  await authPage.navigateTo('login');
 });
 
-// Whens
+Given('I navigate to the register page', async () => {
+  await authPage.navigateTo('register');
+});
 
-When(/^I click the register button$/, async () => {
-  await authPage.clickRegisterButton();
+Given('I am an authenticated user', async () => {
+  await authPage.login();
+  expect(await authPage.seeBudgetTable()).to.be.true;
 });
 
 // Thens
 
-Then(/^I see the login form$/, async () => {
-  expect(await authPage.getLoginForm()).to.be.true;
+Then('I see the login form', async () => {
+  expect(await authPage.getForm('login')).to.be.true;
 });
 
-Then(/^I navigate to the registration page$/, async () => {
-  expect(await authPage.getRegisterForm()).to.be.true;
+Then('I see the register form', async () => {
+  expect(await authPage.getForm('register')).to.be.true;
+});
+
+Then('I see the login page', async () => {
+  expect(await authPage.getCurrentUrl()).to.include('login');
+});
+
+Then('I see the logout page', async () => {
+  expect(await authPage.getCurrentUrl()).to.include('logout');
+});
+
+Then('I see the dashboard page', async () => {
+  expect(await authPage.seeBudgetTable()).to.be.true;
+});
+
+// Whens
+
+When('I click the register button', async () => {
+  await authPage.clickThis('register');
+});
+
+When('I click the login button', async () => {
+  await authPage.clickThis('login');
+});
+
+When('I click the logout link', async () => {
+  await authPage.clickThis('logout');
+});
+
+When('I complete the register form', async () => {
+  await authPage.filloutRegisterForm();
+});
+
+When('I complete the login form', async () => {
+  await authPage.filloutLoginForm();
 });

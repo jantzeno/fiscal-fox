@@ -1,9 +1,9 @@
 [
   {
     "keyword": "Feature",
-    "name": "Registration and Authentication, Login and Logout",
+    "name": "Registration and Authentication - Login and Logout",
     "line": 2,
-    "id": "registration-and-authentication,-login-and-logout",
+    "id": "registration-and-authentication---login-and-logout",
     "tags": [
       {
         "name": "@FE",
@@ -17,7 +17,7 @@
     "uri": "e2e/src/features/auth.feature",
     "elements": [
       {
-        "id": "registration-and-authentication,-login-and-logout;as-an-unauthenticated-user,-i-can-see-the-login-form",
+        "id": "registration-and-authentication---login-and-logout;as-an-unauthenticated-user,-i-can-see-the-login-form",
         "keyword": "Scenario",
         "line": 4,
         "name": "As an unauthenticated user, I can see the login form",
@@ -39,11 +39,11 @@
             "line": 5,
             "name": "I navigate to the login page",
             "match": {
-              "location": "e2e/src/steps/auth.steps.ts:9"
+              "location": "e2e/src/steps/auth.steps.ts:11"
             },
             "result": {
               "status": "passed",
-              "duration": 679000000
+              "duration": 1444000000
             }
           },
           {
@@ -52,11 +52,11 @@
             "line": 6,
             "name": "I see the login form",
             "match": {
-              "location": "e2e/src/steps/auth.steps.ts:21"
+              "location": "e2e/src/steps/auth.steps.ts:26"
             },
             "result": {
               "status": "passed",
-              "duration": 110000000
+              "duration": 152000000
             }
           },
           {
@@ -67,13 +67,13 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3237000000
+              "duration": 686000000
             }
           }
         ]
       },
       {
-        "id": "registration-and-authentication,-login-and-logout;as-an-unauthenticated-user,-i-can-see-the-registration-form",
+        "id": "registration-and-authentication---login-and-logout;as-an-unauthenticated-user,-i-can-see-the-registration-form",
         "keyword": "Scenario",
         "line": 8,
         "name": "As an unauthenticated user, I can see the registration form",
@@ -95,11 +95,11 @@
             "line": 9,
             "name": "I navigate to the login page",
             "match": {
-              "location": "e2e/src/steps/auth.steps.ts:9"
+              "location": "e2e/src/steps/auth.steps.ts:11"
             },
             "result": {
               "status": "passed",
-              "duration": 821000000
+              "duration": 1618000000
             }
           },
           {
@@ -108,11 +108,11 @@
             "line": 10,
             "name": "I see the login form",
             "match": {
-              "location": "e2e/src/steps/auth.steps.ts:21"
+              "location": "e2e/src/steps/auth.steps.ts:26"
             },
             "result": {
               "status": "passed",
-              "duration": 96000000
+              "duration": 155000000
             }
           },
           {
@@ -121,24 +121,24 @@
             "line": 11,
             "name": "I click the register button",
             "match": {
-              "location": "e2e/src/steps/auth.steps.ts:15"
+              "location": "e2e/src/steps/auth.steps.ts:48"
             },
             "result": {
-              "status": "failed",
-              "duration": 17000000,
-              "error_message": "WebDriverError: HTTP method not allowed\n    at parseHttpResponse (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/http.js:536:11)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/http.js:441:30\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\nFrom: Task: mouseMove\n    at Driver.schedule (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/webdriver.js:807:17)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/actions.js:124:23\n    at Array.map (<anonymous>)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/actions.js:123:29\n    at TaskQueue.execute_ (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:3084:14)\n    at TaskQueue.executeNext_ (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:3067:27)\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:2927:27\n    at /home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/promise.js:668:7\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\nFrom: Task: ActionSequence.perform\n    at ActionSequence.perform (/home/jantzen/projects/regis/fiscal-fox/node_modules/selenium-webdriver/lib/actions.js:122:33)\n    at AuthPage.clickButton (/home/jantzen/projects/regis/fiscal-fox/e2e/src/pages/base.po.ts:52:8)\n    at AuthPage.clickRegisterButton (/home/jantzen/projects/regis/fiscal-fox/e2e/src/pages/auth.po.ts:24:16)\n    at World.<anonymous> (/home/jantzen/projects/regis/fiscal-fox/e2e/src/steps/auth.steps.ts:16:18)"
+              "status": "passed",
+              "duration": 302000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
             "line": 12,
-            "name": "I navigate to the registration page",
+            "name": "I navigate to the register page",
             "match": {
-              "location": "e2e/src/steps/auth.steps.ts:25"
+              "location": "e2e/src/steps/auth.steps.ts:15"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 607000000
             }
           },
           {
@@ -149,7 +149,986 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3098000000
+              "duration": 698000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "registration-and-authentication---login-and-logout;as-an-unauthenticated-user,-i-can-register",
+        "keyword": "Scenario",
+        "line": 14,
+        "name": "As an unauthenticated user, I can register",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 15,
+            "name": "I navigate to the register page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1550000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "I see the register form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 198000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 17,
+            "name": "I complete the register form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:60"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1237000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "I click the register button",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 335000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "I see the login form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 725000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 776000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "registration-and-authentication---login-and-logout;as-an-unauthenticated-user,-i-can-login",
+        "keyword": "Scenario",
+        "line": 21,
+        "name": "As an unauthenticated user, I can login",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 22,
+            "name": "I navigate to the login page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1597000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "I see the login form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 158000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 24,
+            "name": "I complete the login form",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:64"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 576000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "I click the login button",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 354000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "I see the dashboard page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1397000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 721000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "registration-and-authentication---login-and-logout;as-an-authenticated-user,-i-can-loout",
+        "keyword": "Scenario",
+        "line": 28,
+        "name": "As an authenticated user, I can loout",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 29,
+            "name": "I am an authenticated user",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4390000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 30,
+            "name": "I click the logout link",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:56"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 295000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 31,
+            "name": "I see the logout page",
+            "match": {
+              "location": "e2e/src/steps/auth.steps.ts:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 750000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Manage Budgets",
+    "line": 2,
+    "id": "manage-budgets",
+    "tags": [
+      {
+        "name": "@FE",
+        "line": 1
+      },
+      {
+        "name": "@app",
+        "line": 1
+      }
+    ],
+    "uri": "e2e/src/features/budget.feature",
+    "elements": [
+      {
+        "id": "manage-budgets;user-clicks-on-new-budget-button-to-navigate-to-the-new-budget-form",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "User clicks on new budget button to navigate to the new budget form",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated budget user",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4292000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "The dashboard is displayed",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 130000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "I click the new budget button",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:63"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 370000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "I see the new budget form",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 176000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 777000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "manage-budgets;user-creates-a-new-budget",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "User creates a new budget",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated budget user",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4330000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "I navigate to the new budget form",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 664000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I complete the new budget form",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:71"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1007000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "I see the new budget on the dashboard",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1084000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 800000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "manage-budgets;user-edits-a-budget",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "User edits a budget",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated budget user",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4087000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "I navigate to the edit budget form",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 732000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "I see the edit budget form",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 218000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "I complete the edit budget form",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:75"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 879000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "I see the updated budget on the dashboard",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:49"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1086000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 774000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "manage-budgets;user-deletes-a-budget",
+        "keyword": "Scenario",
+        "line": 23,
+        "name": "User deletes a budget",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated budget user",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4123000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 24,
+            "name": "I navigate to the edit budget form to delete a budget",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 749000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "I click the delete budget button",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:67"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 365000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "The budget is deleted",
+            "match": {
+              "location": "e2e/src/steps/budget.steps.ts:55"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 943000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 762000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Manage Expenses",
+    "line": 2,
+    "id": "manage-expenses",
+    "tags": [
+      {
+        "name": "@FE",
+        "line": 1
+      },
+      {
+        "name": "@app",
+        "line": 1
+      }
+    ],
+    "uri": "e2e/src/features/expense.feature",
+    "elements": [
+      {
+        "id": "manage-expenses;user-clicks-on-new-expense-button-to-navigate-to-the-new-expense-form",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "User clicks on new expense button to navigate to the new expense form",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated expense user",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4247000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "The budget is displayed",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1068000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "I click the new expense button",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:64"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 350000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "I see the new expense form",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:36"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 160000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 768000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "manage-expenses;user-creates-a-new-expense",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "User creates a new expense",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated expense user",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4389000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "I navigate to the new expense form",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 647000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I complete the new expense form",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:72"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1025000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "I see the new expense in the budget",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:44"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1977000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 806000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "manage-expenses;user-edits-a-expense",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "User edits a expense",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated expense user",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4085000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "I navigate to the edit expense form",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 712000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "I see the edit expense form",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 235000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "I complete the edit expense form",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:76"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 941000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "I see the updated expense in the budget",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1999000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 792000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "manage-expenses;user-deletes-a-expense",
+        "keyword": "Scenario",
+        "line": 23,
+        "name": "User deletes a expense",
+        "tags": [
+          {
+            "name": "@FE",
+            "line": 1
+          },
+          {
+            "name": "@app",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am an authenticated expense user",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4304000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 24,
+            "name": "I navigate to the edit expense form to delete a expense",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 701000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "I click the delete expense button",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:68"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 422000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "The expense is deleted",
+            "match": {
+              "location": "e2e/src/steps/expense.steps.ts:56"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1441000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules/protractor-cucumber-framework/lib/resultsCapturer.js:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 796000000
             }
           }
         ]

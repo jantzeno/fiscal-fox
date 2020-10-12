@@ -1,13 +1,18 @@
 <app-header></app-header>
 <main class="container-fluid">
   <h2>Budget Dashboard</h2>
-  <div id="new-btn">
-    <a class="btn btn-sm btn-success" [routerLink]="['/budgets/new']">
+  <div>
+    <a
+      id="new-btn"
+      class="btn btn-sm btn-success"
+      [routerLink]="['/budgets/new']"
+    >
       New Budget
     </a>
   </div>
   <table
     class="table table-striped"
+    id="budget-table"
     *ngIf="budgets$ | async as budgets; else loadingBudgets"
   >
     <thead>
