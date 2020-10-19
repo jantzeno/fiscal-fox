@@ -6,8 +6,8 @@ The project is for learning web development using the MEAN stack, mostly Angular
 
 ## Tested Using
 
-- Node.js, v14.8.0
-- npm, v6.14.7
+- Node.js, v14.14.0
+- npm, v6.14.8
 
 ## Setup
 
@@ -37,7 +37,7 @@ Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.pr
 
 ## [Fiscal-Fox-Server](https://github.com/jantzeno/fiscal-fox-server)
 
-Required backend
+Required backend, with SQLite.
 
 ```bash
 npm install
