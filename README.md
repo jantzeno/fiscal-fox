@@ -6,8 +6,8 @@ The project is for learning web development using the MEAN stack, mostly Angular
 
 ## Tested Using
 
-- Node.js, v14.14.0
-- npm, v6.14.8
+- Node.js, v16.14.0
+- npm, v8.3.1
 
 ## Setup
 
@@ -33,8 +33,9 @@ Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.gi
 
 ## Running end-to-end tests
 
-Server must be running.
-ng serve must be running on localhost port 4200.
+Server must be running, `npm run mock-db`.
+`ng serve` must be running on localhost port 4200.
+`npx webdriver-manager update`
 Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/), Cucumber, and Chai.
 
 ## [Fiscal-Fox-Server](https://github.com/jantzeno/fiscal-fox-server)
