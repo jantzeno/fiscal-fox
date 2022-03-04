@@ -33,6 +33,8 @@ Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.gi
 
 ## Running end-to-end tests
 
+Server must be running.
+ng serve must be running on localhost port 4200.
 Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/), Cucumber, and Chai.
 
 ## [Fiscal-Fox-Server](https://github.com/jantzeno/fiscal-fox-server)

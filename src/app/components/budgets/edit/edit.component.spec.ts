@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 import { MOCK_EXPENSE } from '../../expenses/store/models/expense-mock-state';
@@ -19,7 +19,7 @@ describe('EditComponent', () => {
   let component: BudgetEditComponent;
   let fixture: ComponentFixture<BudgetEditComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BudgetEditComponent],
     }).compileComponents();

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DashboardComponent } from './dashboard.component';
@@ -29,7 +29,7 @@ describe('DashboardComponent', () => {
   let mockStore: MockStore;
   let mockGetBudgetsSelector: MemoizedSelector<BudgetState, Array<Budget>>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DashboardComponent],
       providers: [

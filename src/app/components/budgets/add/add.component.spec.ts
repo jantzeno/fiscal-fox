@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { BudgetsFacade } from '../budgets.facade';
 import { BudgetAddComponent } from './add.component';
@@ -12,7 +12,7 @@ describe('AddComponent', () => {
   let component: BudgetAddComponent;
   let fixture: ComponentFixture<BudgetAddComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BudgetAddComponent],
       providers: [

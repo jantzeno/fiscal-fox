@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
@@ -25,7 +25,7 @@ describe('DetailsComponent', () => {
   let fixture: ComponentFixture<BudgetDetailsComponent>;
   let mockStore: MockStore;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [provideMockStore()],
       declarations: [BudgetDetailsComponent],
