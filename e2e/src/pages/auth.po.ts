@@ -29,9 +29,19 @@ export class AuthPage extends BasePage {
   }
 
   async filloutRegisterForm(): Promise<void> {
-    await this.enterValuesInInputField('#username', 'testuser');
+    let date = new Date();
+    let time = new String(
+      date.getHours().toString() + date.getMinutes().toString()
+    );
+    // Append current time to username and email for continuous testing
+    // Otherwise, remove the testuser from the database on every test cycle
+    let username = new String('testuser_'.concat(time.toString()));
+    let email = new String(
+      'test_'.concat(time.toString()).concat('@email.com')
+    );
+    await this.enterValuesInInputField('#username', username.toString());
     await this.enterValuesInInputField('#password', 'testpassword');
-    await this.enterValuesInInputField('#email', 'test@email.com');
+    await this.enterValuesInInputField('#email', email.toString());
     await this.clickOn('#budgetAnalyst');
   }
 

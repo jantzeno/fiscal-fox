@@ -1,12 +1,17 @@
-import { Given, Then, When } from 'cucumber';
+import { Before, Given, Then, When } from 'cucumber';
 import { AuthPage } from '../pages/auth.po';
 import { ExpensePage } from '../pages/expense.po';
 
 const chaiAsExpected = require('chai').use(require('chai-as-promised'));
 const expect = chaiAsExpected.expect;
 
-const expensePage: ExpensePage = new ExpensePage();
-const authPage: AuthPage = new AuthPage();
+let expensePage: ExpensePage;
+let authPage: AuthPage;
+
+Before(() => {
+  expensePage = new ExpensePage();
+  authPage = new AuthPage();
+});
 
 // Givens
 

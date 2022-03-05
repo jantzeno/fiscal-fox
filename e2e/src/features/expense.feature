@@ -25,4 +25,3 @@ Given I am an authenticated expense user
     When I click the delete expense button
     Then The expense is deleted
 
-  

@@ -1,5 +1,4 @@
 import { element, by, browser, ExpectedConditions } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
 
 export class BasePage {
   _defaultTimeout: 2000;
